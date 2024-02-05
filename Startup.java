@@ -6,6 +6,7 @@ public class Startup
     private void setLocationCells(ArrayList<String> locs)
     {
         locationCells = locs;
+        int a = 2
     }
     private String checkYourself (String userInput)
     {
@@ -20,7 +21,7 @@ public class Startup
                 } else {
                 result = "hit";
             }
-            }
+         } 
             return result;
         }
     }
