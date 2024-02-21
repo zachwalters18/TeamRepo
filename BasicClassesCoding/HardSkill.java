@@ -1,9 +1,10 @@
 package BasicClassesCoding;
 
 class hardSkill{
+    //instances
     private String title;
     private String level;
-
+    //methods
     void setTitle(String title) {
         this.title = title;
     }
