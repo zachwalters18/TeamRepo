@@ -1,0 +1,17 @@
+//interface1 (Person)
+-work on projects created by manager
+-earn worker salary
+-lives at an address
+//interface2 (Manager)
+-creates teams
+-sets schedules
+-leads projects
+//interface3 (user)
+-creates username
+-creates password
+-logs in as user
+//interface4 (similarities)
+-all create names belonging to one human (id)
+-all get fired
+-all removed from project
+
