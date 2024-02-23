@@ -1,36 +1,34 @@
 package BasicClassesCoding;
-import java.util.Scanner;
+
 
 public class Person {
-    Scanner scn = new Scanner(System.in);
 
-    String name;
-    int age;
+    //variables
+    private String name;
+    private int age;
 
+    //instantiate the name
     public void setName(String input_name){
         this.name = input_name;
     }
-
+    //obtain the name
     public String getName() {
         return name;
     }
-
+    //instantiate the age
     public void setAge(int input_age) {
         this.age = input_age;
     }
-
+    //obtain the age
     public int getAge() {
         return age;
     }
-        
+    //display the name and age
     public void displayDetails() {
-        setName(scn.nextLine());
-        String personName = getName();
-        System.out.println("Name: " + personName);
+        System.out.println("Name: " + name + " Age: " + age);
 
-        setAge(scn.nextInt());
-        int personAge = getAge();
-        System.out.println("Age: " + personAge);
+    
+        
 
     }
     
