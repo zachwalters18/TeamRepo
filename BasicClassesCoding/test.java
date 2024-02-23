@@ -8,6 +8,7 @@ public class test extends hardSkill{
         Scanner scn = new Scanner(System.in);
         //hard skill object as hd
         hardSkill hd = new hardSkill();
+        Person person = new Person();
 
         //testing out hard skill 
         System.out.println("Enter title and level:");
@@ -19,7 +20,7 @@ public class test extends hardSkill{
         System.out.println(hd.getTitle());
         //displays all the info gathered
         hd.displayDetails();
-
+      
         Job jb1 = new Job();
         System.out.println("Enter Job title and years of experience");
         jb1.setTitle(scn.nextLine());
