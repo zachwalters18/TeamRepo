@@ -27,6 +27,7 @@ public class test{
         //set Name and Age
         System.out.println("Enter name and age:");
         person.setName(scn.next());
+        person.setName(scn.nextLine()
         person.setAge(scn.nextInt());
         
         //display the Name and Age of the Person
