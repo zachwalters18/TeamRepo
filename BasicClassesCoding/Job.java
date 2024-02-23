@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Job 
 {
 // Properties
-    private String Title;
+    private String Title; // title prop
     private int Experience;
 
     Scanner scn = new Scanner(System.in);
