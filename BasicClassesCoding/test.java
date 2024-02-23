@@ -2,7 +2,7 @@ package BasicClassesCoding;
 //import scanner
 import java.util.Scanner;
 //make sure you extend your class to test
-public class test extends hardSkill{
+public class test{
     public static void main(String[] args) {
         //scn is the scanner for input
         Scanner scn = new Scanner(System.in);
@@ -26,7 +26,8 @@ public class test extends hardSkill{
 
         //set Name and Age
         System.out.println("Enter name and age:");
-        person.setName(scn.nextLine());
+        person.setName(scn.next());
+        person.setName(scn.nextLine()
         person.setAge(scn.nextInt());
         
         //display the Name and Age of the Person
@@ -34,13 +35,12 @@ public class test extends hardSkill{
 
         //space for easy reading 
         System.out.println();
-
-        
-        System.out.println("Enter Job Title and Years of Experience: ");
-        jb1.setTitle(scn.nextLine());
-        jb1.setExperience(scn.nextInt());
-        jb1.displayDetails();
-
+ 
+        System.out.println("Enter Job Title and Months of Experience: ");        // prompt the user to put in specific job title and experience in months
+        scn.nextLine();                             // catches unused line after nextInt()
+        jb1.setjobTitle(scn.nextLine());            // takes input for job title
+        jb1.setjobExperience(scn.nextInt());        // takes input for job experience
+        jb1.displayjobDetails();                    // outputs both fields for title and experience
         
     }
 }

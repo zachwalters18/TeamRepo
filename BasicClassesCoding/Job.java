@@ -4,32 +4,32 @@ package BasicClassesCoding;
 public class Job 
 {
 // Properties
-    private String Title; // title prop
-    private int Experience;
+    private String jobTitle;
+    private int jobExperience;
 
 //Methods:
-    public void setTitle(String Title) // sets job title
+    public void setjobTitle(String jobTitle) // sets job title
     {
-        this.Title = Title;
+        this.jobTitle = jobTitle;
     }
 
-    public void setExperience(int Experience) // Sets the number of months on the job.
+    public void setjobExperience(int jobExperience) // Sets the number of months on the job.
     {
-        this.Experience = Experience;
+        this.jobExperience = jobExperience;
     }
 
-    public String getTitle() // Retrieves the job title
+    public String getjobTitle() // Retrieves the job title
     {
-        return Title;
+        return jobTitle;
     }
 
-    public int getExperiencel() // Retrieves the number of months on the job
+    public int getjobExperience() // Retrieves the number of months on the job
     {
-        return Experience;
+        return jobExperience;
     }
     
-    public void  displayDetails() //Displays the jobs and lengths of time in months on the job
+    public void  displayjobDetails() //Displays the jobs and lengths of time in months on the job
     {
-        System.out.println("Job Title: " + Title + " Job Experience: " + Experience + " years.");
+        System.out.println("Job Title: " + getjobTitle() + " Job Experience: "+ getjobExperience() + " months.");
     }
 }
