@@ -25,7 +25,7 @@ public class Person {
     }
     //display the name and age
     public void displayDetails() {
-        System.out.println("Name: " + name + " Age: " + age);
+        System.out.println("Name: " + getName() + " Age: " + getAge());
 
     
         
