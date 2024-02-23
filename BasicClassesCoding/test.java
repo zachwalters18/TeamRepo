@@ -20,15 +20,11 @@ public class test extends hardSkill{
         System.out.println(hd.getTitle());
         //displays all the info gathered
         hd.displayDetails();
-        
-        System.out.println();
-
-        System.out.println("Enter name and age:");
-        person.setName(scn.nextLine());
-        person.setAge(scn.nextInt());
-        person.displayDetails();
-
-
-        
+      
+        Job jb1 = new Job();
+        System.out.println("Enter Job title and years of experience");
+        jb1.setTitle(scn.nextLine());
+        jb1.setExperience(scn.nextInt());
+        jb1.displayDetails();
     }
 }

@@ -1,5 +1,4 @@
 package BasicClassesCoding;
-import java.util.Scanner;
 
 
 public class Job 
@@ -8,30 +7,29 @@ public class Job
     private String Title; // title prop
     private int Experience;
 
-    Scanner scn = new Scanner(System.in);
 //Methods:
-    private void setTitle() // sets job title
+    public void setTitle(String Title) // sets job title
     {
-        Title = scn.nextLine();
+        this.Title = Title;
     }
 
-    private void setExperience() // Sets the number of months on the job.
+    public void setExperience(int Experience) // Sets the number of months on the job.
     {
-        Experience = scn.nextInt();
+        this.Experience = Experience;
     }
 
-    private String getTitle() // Retrieves the job title
+    public String getTitle() // Retrieves the job title
     {
         return Title;
     }
 
-    private int getExperiencel() // Retrieves the number of months on the job
+    public int getExperiencel() // Retrieves the number of months on the job
     {
         return Experience;
     }
     
-    private void displayDetails() //Displays the jobs and lengths of time in months on the job
+    public void  displayDetails() //Displays the jobs and lengths of time in months on the job
     {
-        System.out.println("Title: " + Title + ", Experience: " + Experience + "years,")
+        System.out.println("Job Title: " + Title + " Job Experience: " + Experience + " years.");
     }
 }
