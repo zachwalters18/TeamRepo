@@ -23,13 +23,13 @@ public class Job
         return Title;
     }
 
-    public int getExperiencel() // Retrieves the number of months on the job
+    public int getExperience() // Retrieves the number of months on the job
     {
         return Experience;
     }
     
     public void  displayDetails() //Displays the jobs and lengths of time in months on the job
     {
-        System.out.println("Job Title: " + Title + " Job Experience: " + Experience + " years.");
+        System.out.println(String.format("Job Title: %s Job Experience: %d months.", getTitle(), getExperience()));
     }
 }
