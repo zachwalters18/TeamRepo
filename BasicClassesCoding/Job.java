@@ -3,7 +3,7 @@ package BasicClassesCoding;
 
 public class Job 
 {
-// Properties
+// Properties for job class
     private String jobTitle;
     private int jobExperience;
 
@@ -32,4 +32,5 @@ public class Job
     {
         System.out.println("Job Title: " + getjobTitle() + " Job Experience: "+ getjobExperience() + " months.");
     }
+
 }
