@@ -1,15 +1,23 @@
 package BasicClassesCoding;
 //import scanner
 import java.util.Scanner;
+<<<<<<< Updated upstream
 //make sure you extend your class to test
 public class test{
+=======
+
+public class test{ 
+    
+>>>>>>> Stashed changes
     public static void main(String[] args) {
-        //scn is the scanner for input
         Scanner scn = new Scanner(System.in);
+        //scn is the scanner for input
+        
+
         //hard skill object as hd
         hardSkill hd = new hardSkill();
         Person person = new Person();
-        Job jb1 = new Job();
+        Job job = new Job();
 
         //testing out hard skill 
         System.out.println("Enter title of hard skill and level:");
@@ -35,6 +43,7 @@ public class test{
 
         //space for easy reading 
         System.out.println();
+<<<<<<< Updated upstream
  
         System.out.println("Enter Job Title and Months of Experience: ");        // prompt the user to put in specific job title and experience in months
         scn.nextLine();                             // catches unused line after nextInt()
@@ -42,5 +51,13 @@ public class test{
         jb1.setjobExperience(scn.nextInt());        // takes input for job experience
         jb1.displayjobDetails();                    // outputs both fields for title and experience
         
+=======
+
+        
+        System.out.println("Enter Job Title and Months of Experience:");
+        job.setJobTitle(scn.nextLine());
+        job.setExperience(scn.nextInt());
+        job.displayDetails();
+>>>>>>> Stashed changes
     }
 }
