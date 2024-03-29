@@ -1,6 +1,6 @@
 package BasicClassesCoding;
 
-class hardSkill{
+public class HardSkill{
     //instances
     private String title;
     private String level;

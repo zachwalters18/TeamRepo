@@ -9,7 +9,7 @@ public class test{
         
 
         //hard skill object as hd
-        hardSkill hd = new hardSkill();
+        HardSkill hd = new HardSkill();
         Person person = new Person();
         Job jb1 = new Job();
 
