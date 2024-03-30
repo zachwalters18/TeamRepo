@@ -1,5 +1,5 @@
 package TermApp;
 
-public interface Helper {
-    
+interface Helper {
+    boolean validateUser(String givenUsername, String givenPassword);
 }
