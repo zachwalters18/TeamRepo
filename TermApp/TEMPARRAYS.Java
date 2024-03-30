@@ -6,7 +6,7 @@ public class TEMPARRAYS {
 
     
     public ArrayList<Employee> emp;
-    public ArrayList<Users> user;
+    public ArrayList<Users> user = ;
     public ArrayList<String> questions;
     public ArrayList<Teams> teams;
     public ArrayList<Projects> projects;
