@@ -3,12 +3,26 @@ package TermApp;
 public class Evaluation extends Manager 
 {
     // Properties 
-    private String evalID;
-    private String evalType;
+    private int evaluationID;
+    private String evalaluationType;
+    private String evaluationAnswers;
+    private String evaluator;
 
     //Methods
+    public Evaluation(String evaler, int evalID)
+    {
+        this.evaluator = evaler;
+        this.evaluationID = evalID;
+        
+    }
+
     public int getEval(int index)
     {
-        return 5;
+        TEMPARRAYS.findEval(index);
+    }
+
+    public String setAnswers()
+    {
+        return answer;
     }
 }
