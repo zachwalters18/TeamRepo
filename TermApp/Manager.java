@@ -1,6 +1,6 @@
 package TermApp;
 
-public abstract class Manager 
+public abstract class Manager extends TEMPARRAYS{
 {
     //Properties 
     private String firstName;
@@ -18,7 +18,4 @@ public abstract class Manager
     {
         return evaluation.getEval(index);
     }
-
-
-
 }

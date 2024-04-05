@@ -11,7 +11,8 @@ public class TEMPARRAYS {
     public ArrayList<Projects> projects;
     public ArrayList<Evaluation> evalution;
     public ArrayList<Skills> skills;
-    public ArrayList<Job> job;
+
+    public ArrayList<Job> jobs = new ArrayList<Job>();
     
         public ArrayList updateUsers(ArrayList updatedUsers) {
             
@@ -25,5 +26,10 @@ public class TEMPARRAYS {
 
 
 
+    
 
+
+    public ArrayList getUsers() {
+        return users;
+    }
 }
