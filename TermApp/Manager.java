@@ -1,5 +1,5 @@
 package TermApp;
 
-public abstract class Manager {
+public abstract class Manager extends TEMPARRAYS{
     
 }
