@@ -1,5 +1,6 @@
 package TermApp;
 
+
 public class Skills extends Manager {
     String skillID;
     String hardSkill;
@@ -29,6 +30,9 @@ public class Skills extends Manager {
     public String getSkillID() {
         return skillID;
     }
+
+public class Skills extends TEMPARRAYS{
+
     
     public String getHardSkill() {
         return hardSkill;
