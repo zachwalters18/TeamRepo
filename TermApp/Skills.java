@@ -1,5 +1,5 @@
 package TermApp;
 
-public class Skills {
+public class Skills extends TEMPARRAYS{
     
 }
