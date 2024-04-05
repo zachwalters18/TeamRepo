@@ -3,12 +3,9 @@ package TermApp;
 import java.util.ArrayList;
 
 public class TEMPARRAYS {
+        
     public ArrayList<Employee> emp;
-
-    
-
-    public ArrayList<User> users = new ArrayList<User>();
-
+    public ArrayList<Users> users = ;
     public ArrayList<String> questions;
     public ArrayList<Teams> teams;
     public ArrayList<Projects> projects;
@@ -17,7 +14,14 @@ public class TEMPARRAYS {
 
     public ArrayList<Job> jobs = new ArrayList<Job>();
     
-
+        public ArrayList updateUsers(ArrayList updatedUsers) {
+            
+        }
+        
+        public findEval(int index){
+            evaluation.get(index);
+        }
+    }   
 
 
 
