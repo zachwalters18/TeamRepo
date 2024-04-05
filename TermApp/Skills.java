@@ -54,6 +54,4 @@ public class Skills extends Manager {
     
     }
 
-
-
 }
