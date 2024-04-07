@@ -1,9 +1,11 @@
 package TermApp;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
-//FIXME I NEED CONSTRUCTOR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 public class User extends TEMPARRAYS implements Helper{
     Scanner scnr = new Scanner(System.in);
     private String userID;
@@ -34,52 +36,98 @@ public class User extends TEMPARRAYS implements Helper{
     private String getPassword() {
         return password;
     }
-
-    //other methods
     //adds a new user to the user array
-    private void addUser() {
+    public void addUser() {
         User newUser = new User();
-        //FIXME Add random ids with unique characters
-        newUser.setUserID(" ");
+        newUser.setUserID(createNewUserID());
         newUser.setUsername(nextLine("Enter new username: "));
         newUser.setPassword(nextLine("Enter new password: "));
-        //FIXME add the newUser to the array
-        users.add(newUser);
+        //user is added to "users" array list
+        ArrayList<User> updatedUsers = getUsers();
+        updatedUsers.add(newUser);
+        setUsers(updatedUsers);
     }
+    //username and password are able to be edited
+    public void updateUser() {
+        System.out.println("Select User.");
+        User selectedUser = findUser(   //locates user
+            nextLine("Enter username: "),
+            nextLine("Enter password: "),
+            nextInt("Enter user ID: ")
+        );
+        ArrayList<User> updatedUsers = getUsers();
+        updatedUsers.remove(selectedUser);          //removes old user
+        selectedUser.setUsername(nextLine("Enter new username: ")); //update username
+        selectedUser.setPassword(nextLine("Enter new password: ")); //update password
+        updatedUsers.add(newUser);                  //adds updated user
+        setUsers(updatedUsers);
+    }
+    //deletes selected user
+    public void deleteUser() {
+        User selectedUser = findUser(   //locates user
+            nextLine("Enter username: "),
+            nextLine("Enter password: "),
+            nextInt("Enter user ID: ")
+        );
+        //selected user is deleted from "users" array list
+        ArrayList<User> updatedUsers = getUsers();
+        updatedUsers.remove(selectedUser);
+        setUsers(updatedUsers);
+    }
+    //creates a new user ID, validates it, and returns it
+    private createNewUserID() {
+        ArrayList<User> users = getUsers();
+        int newUserID = 0;
+        while (!(filteredUsers.isEmpty())) {
+            newUserID = (int)(Math.random() * 100)  //only 100 IDs available
+            List<User> filteredUsrs = users.stream()
+                .filter(User -> 
+                    user.getUserID.equals(newUserID))
+                .collect(Collectors.toList());
+        }
+        return newUserID;
+    }
+    //validates User when given username and password and searches for a match
+    private boolean validateUser(String givenUsername, String givenPassword) {
+        ArrayList<User> users = getUsers();
+        List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
+            .filter(user -> 
+                user.getUsername().equals(givenUsername)
+                &&
+                user.getPassword().equals(givenPassword))
+            .collect(Collectors.toList());
 
-    private void updateUser() {
-        //FIXME updates new information to user
-    }
-
-    private void deleteUser() {
-        //FIXME Delete user from user array
-    }
-    //creates a new user ID, validates it, and adds it
-    public createNewUserID() {
-        boolean isNewUserID = true;
-        //while false
-        while(!isNewUserID()) {
-            String newUserID = "";
-            int range;
-            for (int i = 0; i <= 8; i++) {
-                if (i = 0) {
-                    range = (90 - 65) + 1;                                  //range is determined
-                    newUserID += (char)((int)(Math.random() * range) + 65); //the first character of newUserID is a letter
-                } else {
-                    range = (9 - 0) + 1;
-                    newUserID += String((int)(Math.random() * range) + 0);  //the rest of the string is numbers (0-9)
-                }
-            }
-            isNewUserID = validateID(newUserID);                            //validates the newUserID
+        if (filteredUsers.isEmpty()) {
+            return false;
+        } else {
+            return true;
         }
     }
-
-    public boolean validateUser(String givenUsername, String givenPassword) {
-        boolean isUser = false;
-        //FIXME uses streams to find a user in users with the same username and password
-        return isUser;
+    //locates user with the givens then outputs that user
+    private User findUser(String givenUsername, String givenPassword, int givenUserID) {
+        ArrayList<User> users = getUsers();
+        List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
+            .filter(user -> 
+                user.getUsername().equals(givenUsername)
+                &&
+                user.getPassword().equals(givenPassword)
+                &&
+                user.getUserID().equals(givenID))
+            .collect(Collectors.toList());
+        //checks if user is found
+        boolean noUserfound = true;
+        while (noUserfound) {
+            if (filteredUsers.isEmpty()) {
+                System.out.println("INCORRECT. Re-enter information.");
+            } else {
+                System.out.println("FOUND.");
+                noUserfound = false;
+                User selectedUser = filteredUsers.get(0);
+            }
+        }
+        return selectedUser;
     }
-    //validates username and password for login by setting loggedIn to true
+    //checks for correct username and password then logs in by setting loggedIn to true
     public void logIn() {
         String givenUsername;
         String givenPassword;
@@ -101,20 +149,20 @@ public class User extends TEMPARRAYS implements Helper{
     public void createFakeUsers() {
         //creates 3 fake users
         User fake1 = new User();
-        fake1.setUserID("M9102345");
+        fake1.setUserID(1);
         fake1.setUsername("player12");
         fake1.setPassword("memeLord123");
         User fake2 = new User();
-        fake2.setUserID("T1324234");
+        fake2.setUserID(3);
         fake2.setUsername("LOOK1");
         fake2.setPassword("password");
         User fake3 = new User();
-        fake3.setUserID("A1285321");
+        fake3.setUserID(2);
         fake3.setUsername("David");
         fake3.setPassword("ijustdo");
         //adds fake users to arrayList "users"
-        users.add(fake1);
-        users.add(fake2);
-        users.add(fake3);
+        updateUsers(fake1);
+        updateUsers(fake2);
+        updateUsers(fake3);
     }
 }
