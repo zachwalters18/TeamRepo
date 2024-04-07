@@ -53,7 +53,7 @@ public class User extends TEMPARRAYS implements Helper{
         User selectedUser = findUser(   //locates user
             nextLine("Enter username: "),
             nextLine("Enter password: "),
-            nextInt("Enter user ID: ")
+            nextInt("Enter user ID: ")          //FIXME should i check for an integer?
         );
         ArrayList<User> updatedUsers = getUsers();
         updatedUsers.remove(selectedUser);          //removes old user
@@ -75,50 +75,37 @@ public class User extends TEMPARRAYS implements Helper{
         setUsers(updatedUsers);
     }
     //creates a new user ID, validates it, and returns it
-    private createNewUserID() {
+    private int createNewUserID() {
         ArrayList<User> users = getUsers();
         int newUserID = 0;
-        while (!(filteredUsers.isEmpty())) {
+        while (!(filteredUsers.isEmpty())) {        //when filteredUsers is empty, a new ID is made
             newUserID = (int)(Math.random() * 100)  //only 100 IDs available
-            List<User> filteredUsrs = users.stream()
-                .filter(User -> 
+            List<User> filteredUsers = users.stream()
+                .filter(user -> 
                     user.getUserID.equals(newUserID))
                 .collect(Collectors.toList());
         }
         return newUserID;
     }
-    //validates User when given username and password and searches for a match
-    private boolean validateUser(String givenUsername, String givenPassword) {
-        ArrayList<User> users = getUsers();
-        List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
-            .filter(user -> 
-                user.getUsername().equals(givenUsername)
-                &&
-                user.getPassword().equals(givenPassword))
-            .collect(Collectors.toList());
-
-        if (filteredUsers.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
     //locates user with the givens then outputs that user
     private User findUser(String givenUsername, String givenPassword, int givenUserID) {
         ArrayList<User> users = getUsers();
-        List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
-            .filter(user -> 
-                user.getUsername().equals(givenUsername)
-                &&
-                user.getPassword().equals(givenPassword)
-                &&
-                user.getUserID().equals(givenID))
-            .collect(Collectors.toList());
-        //checks if user is found
-        boolean noUserfound = true;
         while (noUserfound) {
+            List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
+                .filter(user -> 
+                    user.getUsername().equals(givenUsername)
+                    &&
+                    user.getPassword().equals(givenPassword)
+                    &&
+                    user.getUserID().equals(givenID))
+                .collect(Collectors.toList());
+            //checks if user is found
+            boolean noUserfound = true;
             if (filteredUsers.isEmpty()) {
                 System.out.println("INCORRECT. Re-enter information.");
+                givenUsername = nextLine("Enter username: ");
+                givenPassword = nextLine("Enter password: ");
+                givenUserID = nextInt("Enter user ID: ");
             } else {
                 System.out.println("FOUND.");
                 noUserfound = false;
@@ -144,7 +131,22 @@ public class User extends TEMPARRAYS implements Helper{
     public void logOut() {
         this.loggedIn = false;
     }
+    //validates User when given username and password and searches for a match
+    private boolean validateUser(String givenUsername, String givenPassword) {
+        ArrayList<User> users = getUsers();
+        List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
+            .filter(user -> 
+                user.getUsername().equals(givenUsername)
+                &&
+                user.getPassword().equals(givenPassword))
+            .collect(Collectors.toList());
 
+        if (filteredUsers.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     //FIXME this is for the data
     public void createFakeUsers() {
         //creates 3 fake users
@@ -161,8 +163,9 @@ public class User extends TEMPARRAYS implements Helper{
         fake3.setUsername("David");
         fake3.setPassword("ijustdo");
         //adds fake users to arrayList "users"
-        updateUsers(fake1);
-        updateUsers(fake2);
-        updateUsers(fake3);
+        ArrayList<User> updatedUsers = getUsers();
+        updatedUsers.add(fake1);
+        updatedUsers.add(fake2);
+        updatedUsers.add(fake3);
     }
 }

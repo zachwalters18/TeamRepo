@@ -6,8 +6,8 @@ public class TEMPARRAYS {
     private ArrayList<User> users = new ArrayList<User>();
     private ArrayList<Employee> employees = new ArrayList<Employee>();
     private ArrayList<String> questions = new ArrayList<String>();
-    private ArrayList<Teams> teams = new ArrayList<Teams>();
-    private ArrayList<Projects> projects = new ArrayList<Projects>();
+    private ArrayList<Team> teams = new ArrayList<Team>();
+    private ArrayList<Project> projects = new ArrayList<Project>();
     private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
     private ArrayList<Skills> skills = new ArrayList<Skills>();
     private ArrayList<Job> jobs = new ArrayList<Job>();
@@ -23,17 +23,17 @@ public class TEMPARRAYS {
     //questions methods
 
     //teams methods
-    protected ArrayList<Teams> getTeams() {
+    protected ArrayList<Team> getTeams() {
         return this.teams;
     }
-    protected void setTeams(ArrayList<Teams> updatedTeams) {
+    protected void setTeams(ArrayList<Team> updatedTeams) {
         this.teams = updatedTeams;
     }
     //projects methods
-    protected ArrayList<Projects> getProjects() {
+    protected ArrayList<Project> getProjects() {
         return this.projects;
     }
-    protected void setProjects(ArrayList<Projects> updatedProjects) {
+    protected void setProjects(ArrayList<Project> updatedProjects) {
         this.projects = updatedProjects;
     }
     //evaluations methods
