@@ -6,7 +6,10 @@ public class Projects extends Job {
     private String startDate;
     private String endDate;
     private String status;
+    //default constructor
+    public Projects() {
 
+    }
     //setters
     private void setProductID(String productID) {
         this.productID = productID;
@@ -39,8 +42,8 @@ public class Projects extends Job {
     private String getStatus() {
         return status;
     }
-
     //other methods
+    //adds a new project to the array
     private void addProject() {
         //FIXME adds a new project to the array
     }
@@ -49,7 +52,7 @@ public class Projects extends Job {
         //FIXME updates project with new information
     }
 
-    private void deleteProject(int index) {
+    private void deleteProject() {
         //FIXME deletes project at index in the array
     }
 }
