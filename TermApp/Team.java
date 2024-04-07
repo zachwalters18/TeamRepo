@@ -1,12 +1,12 @@
 package TermApp;
 
-public class Teams extends Projects {
-    private String[] currentTeamMembers;
-    private String[] requiredSkills;
-    private String[] jobIDs;
-    private String[] pastProjects;
-    private String teamID;
-    private String currentProjectID;
+public class Team extends Projects {
+    private String[] currentTeamMembers;//utilizes employee name and id (String)
+    private String[] requiredSkills;    //utilizes skills (Strings)
+    private int[] jobIDs;               //utilizes id (integers)
+    private int[] pastProjectIDs;       //utilizes id (integers)
+    private int teamID;
+    private int currentProjectID;
 
     //setters
     private void setCurrentTeamMembers(String[] currentTeamMembers) {
@@ -15,16 +15,16 @@ public class Teams extends Projects {
     private void setRequiredSkills(String[] requiredSkillString) {
         this.requiredSkills = requiredSkills;
     }
-    private void setJobIDs(String[] jobIDs) {
+    private void setJobIDs(int[] jobIDs) {
         this.jobIDs = jobIDs;
     }
-    private void setPastProjects(String[] pastProjects) {
-        this.pastProjects = pastProjects;
+    private void setPastProjectIDs(int[] pastProjectIDs) {
+        this.pastProjectIDs = pastProjectIDs;
     }
-    private void setTeamID(String teamID) {
+    private void setTeamID(int teamID) {
         this.teamID = teamID;
     }
-    private void setCurrentProjectID(String currentProjectID) {
+    private void setCurrentProjectID(int currentProjectID) {
         this.currentProjectID = currentProjectID;
     }
     //getters
@@ -34,16 +34,16 @@ public class Teams extends Projects {
     private String[] getRequiredSkills() {
         return requiredSkills;
     }
-    private String[] getJobIDs() {
+    private int[] getJobIDs() {
         return jobIDs;
     }
-    private String[] getPastProjects() {
+    private int[] getPastProjects() {
         return pastProjects;
     }
-    private String getTeamID() {
+    private int getTeamID() {
         return teamID;
     }
-    private String getCurrentProjectID() {
+    private int getCurrentProjectID() {
         return currentProjectID;
     }
 
