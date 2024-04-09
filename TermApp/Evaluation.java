@@ -7,6 +7,7 @@ public class Evaluation extends Manager
     private String evalaluationType;
     private String evaluationAnswers;
     private String evaluator;
+    private Object[] EvalArray;
 
     //Methods
     public Evaluation(String evaler, int evalID)
@@ -16,13 +17,8 @@ public class Evaluation extends Manager
         
     }
 
-    public int getEval(int index)
+    public Object getEval(int index)
     {
-        TEMPARRAYS.findEval(index);
-    }
-
-    public String setAnswers()
-    {
-        return answer;
+        return EvalArray[index];
     }
 }

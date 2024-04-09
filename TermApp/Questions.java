@@ -7,7 +7,7 @@ public class Questions extends Evaluation {
     // Properties 
     private double questionID;
     private String questionType;
-    private String[] question;
+    private String[] questions;
     private String answers;
 
     Scanner scn = new Scanner(System.in);
@@ -15,7 +15,7 @@ public class Questions extends Evaluation {
     //Methods 
     public Questions(int n){
         this.questionID = Math.random();
-        this.question[] = question[n];
+        this.questions[] = questions[n];
         this.questionType = " ";
         this.answers = "";
 
@@ -42,6 +42,11 @@ public class Questions extends Evaluation {
     public void setAnswers(String ans)
     {
         this.answers = ans;
+    }
+
+    public String getAnswers(String ans)
+    {
+        return answers;
     }
 
 }
