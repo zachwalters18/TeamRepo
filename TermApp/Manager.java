@@ -1,6 +1,6 @@
 package TermApp;
 
-public abstract class Manager extends TEMPARRAYS{
+public abstract class Manager {
 {
     //Properties 
     private String firstName;
