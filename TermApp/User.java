@@ -6,15 +6,17 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-public class User extends TEMPARRAYS implements Helper{
+public class User {
     Scanner scnr = new Scanner(System.in);
     private String userID;
     private String username;
     private String password;
     private Boolean loggedIn = false;
     //default constructor
-    public User() {
-
+    public User(String givenUsername, String givenPassword) {
+        setUserID(createNewUserID());
+        setUsername(givenUsername);
+        setPassword(givenPassword);
     }
     //setters
     private void setUserID(String userID) {
@@ -37,37 +39,38 @@ public class User extends TEMPARRAYS implements Helper{
         return password;
     }
     //adds a new user to the user array
-    public void addUser() {
+    public void addUser(String givenUsername, String givenPassword) {
         User newUser = new User();
         newUser.setUserID(createNewUserID());
-        newUser.setUsername(nextLine("Enter new username: "));
-        newUser.setPassword(nextLine("Enter new password: "));
+        newUser.setUsername(givenUsername);
+        newUser.setPassword(givenPassword);
         //user is added to "users" array list
         ArrayList<User> updatedUsers = getUsers();
         updatedUsers.add(newUser);
         setUsers(updatedUsers);
     }
     //username and password are able to be edited
-    public void updateUser() {
-        System.out.println("Select User.");
+    public void updateUser(int givenUserID, String givenUsername, String givenPassword) {
         User selectedUser = findUser(   //locates user
-            nextLine("Enter username: "),
-            nextLine("Enter password: "),
-            nextInt("Enter user ID: ")          //FIXME should i check for an integer?
+            givenUsername,
+            givenPassword,
+            givenUserID          //FIXME should i check for an integer?
         );
         ArrayList<User> updatedUsers = getUsers();
         updatedUsers.remove(selectedUser);          //removes old user
-        selectedUser.setUsername(nextLine("Enter new username: ")); //update username
-        selectedUser.setPassword(nextLine("Enter new password: ")); //update password
+        String newUsername = scnr.nextLine();
+        String newPassword = scnr.nextLine();
+        selectedUser.setUsername(newUsername); //update username
+        selectedUser.setPassword(newPassword); //update password
         updatedUsers.add(newUser);                  //adds updated user
         setUsers(updatedUsers);
     }
     //deletes selected user
-    public void deleteUser() {
+    private void deleteUser(int givenUserID, String givenUsername, String givenPassword) {
         User selectedUser = findUser(   //locates user
-            nextLine("Enter username: "),
-            nextLine("Enter password: "),
-            nextInt("Enter user ID: ")
+            givenUsername,
+            givenPassword,
+            givenUserID
         );
         //selected user is deleted from "users" array list
         ArrayList<User> updatedUsers = getUsers();
@@ -79,7 +82,7 @@ public class User extends TEMPARRAYS implements Helper{
         ArrayList<User> users = getUsers();
         int newUserID = 0;
         while (!(filteredUsers.isEmpty())) {        //when filteredUsers is empty, a new ID is made
-            newUserID = (int)(Math.random() * 100)  //only 100 IDs available
+            newUserID = (int)(Math.random() * 100);  //only 100 IDs available
             List<User> filteredUsers = users.stream()
                 .filter(user -> 
                     user.getUserID.equals(newUserID))
@@ -101,13 +104,9 @@ public class User extends TEMPARRAYS implements Helper{
                 .collect(Collectors.toList());
             //checks if user is found
             boolean noUserfound = true;
-            if (filteredUsers.isEmpty()) {
-                System.out.println("INCORRECT. Re-enter information.");
-                givenUsername = nextLine("Enter username: ");
-                givenPassword = nextLine("Enter password: ");
-                givenUserID = nextInt("Enter user ID: ");
+            if (filteredUsers.isEmpty()) {  
+                //FIXME I CANNOT DO THIS UNTIL I GET ARRAY LIST HERE
             } else {
-                System.out.println("FOUND.");
                 noUserfound = false;
                 User selectedUser = filteredUsers.get(0);
             }
@@ -115,14 +114,8 @@ public class User extends TEMPARRAYS implements Helper{
         return selectedUser;
     }
     //checks for correct username and password then logs in by setting loggedIn to true
-    public void logIn() {
-        String givenUsername;
-        String givenPassword;
+    public void logIn(String givenUsername, String givenPasword) {
         while (loggedIn) {
-            System.out.println("Please enter your username:");
-            givenUsername = scnr.nextLine();
-            System.out.println("Please enter your password: ");
-            givenPassword = scnr.nextLine();
             this.loggedIn = validateUser(givenUsername, givenPassword);
         }
 

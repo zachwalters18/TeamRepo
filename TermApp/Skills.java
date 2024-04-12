@@ -30,7 +30,7 @@ public class Skills extends Manager {
     public String getSkillID() {
         return skillID;
     }
-
+}
 public class Skills extends TEMPARRAYS{
 
     

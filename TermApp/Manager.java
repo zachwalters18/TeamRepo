@@ -1,7 +1,6 @@
 package TermApp;
 
-public abstract class Manager
-{
+public class Manager{
     //Properties 
     private String firstName;
     private String lastName;

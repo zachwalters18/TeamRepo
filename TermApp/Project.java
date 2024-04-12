@@ -50,37 +50,36 @@ public class Project extends Job {
         return status;
     }
     //adds a new project to the array
-    private void addProject() {
+    private void addProject(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus) {
         Project newProject = new Project();
         newProject.setProjectID(createProjectID());
-        newProject.setProjectName(nextLine("Enter project name: "));
-        newProject.setStartDate(nextLine("Enter start date (00/00/00): "));
-        newProject.setEndDate(nextLine("Enter end date (00/00/00): "));
-        newProject.setStatus(nextLine("Provide summary of project: "));
+        newProject.setProjectName(givenProjectName);
+        newProject.setStartDate(givenStartDate);
+        newProject.setEndDate(givenEndDate);
+        newProject.setStatus(givenStatus);
         ArrayList<Project> updatedProjects = getProjects();
         updatedProjects.add(newProject);
         setProjects(updatedProjects);
     }
     //updates selected project
-    private static void updateProject() {
-        System.out.println("Select Project.");
-        Project selectedProject = findProject(   //locates project
-            nextInt("Enter Project ID: ")
-        );
+    private static void updateProject(int givenProductID) {
+        Project selectedProject = findProject(givenProductID);   //locates project
         ArrayList<Project> updatedProjects = getProjects();
         updatedProjects.remove(selectedProject);          //removes old project
-        selectedProject.setProjectName(nextLine("Enter new project name: ")); //update projectName
-        selectedProject.setStartDate(nextLine("Enter new start date (00/00/00): "));
-        selectedProject.setEndDate(nextLine("Enter new end date (00/00/00): "));
-        selectedProject.setStatus(nextLine("Enter new summary of project: "));
+        String newProductName = nextLine();
+        String newStartDate = nextLine();
+        String newEndDate = nextLine();
+        String newStatus = nextLine();
+        selectedProject.setProjectName(newProductName); //update projectName
+        selectedProject.setStartDate(newStartDate);
+        selectedProject.setEndDate(newEndDate);
+        selectedProject.setStatus(newStatus);
         updatedProjects.add(newProject);                  //adds updated project
         setProjects(updatedProjects);
     }
     //deletes selected project
-    private void deleteProject() {
-        Project selectedProject = findProject(   //locates project
-            nextInt("Enter project ID: ")
-        );
+    private void deleteProject(int givenProductID) {
+        Project selectedProject = findProject(givenProductID);   //locates project
         //selected user is deleted from "users" array list
         ArrayList<Project> updatedProjects = getProjects();
         updatedProjects.remove(selectedProject);
@@ -91,7 +90,7 @@ public class Project extends Job {
         ArrayList<Project> projects = getProjects();
         int newProjectID = 0;
         while (!(filteredProjects.isEmpty())) {           //when filteredProjects is empty, a new ID is made
-            newProjectID = (int)(Math.random() * 100)  //only 100 IDs available
+            newProjectID = (int)(Math.random() * 100);  //only 100 IDs available
             List<Project> filteredProjects = projects.stream()
                 .filter(project -> 
                     project.getProjectID.equals(newProjectID))
@@ -113,7 +112,6 @@ public class Project extends Job {
                 System.out.println("INCORRECT. Re-enter information.");
                 givenID = nextLine("Enter project ID: ")
             } else {
-                System.out.println("FOUND.");
                 noProjectfound = false;
                 Project selectedProject = filteredProjects.get(0);
             }
