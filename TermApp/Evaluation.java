@@ -1,6 +1,6 @@
 package TermApp;
 
-public class Evaluation extends Manager 
+public class Evaluation 
 {
     // Properties 
     private int evaluationID;

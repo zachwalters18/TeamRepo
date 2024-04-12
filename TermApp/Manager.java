@@ -1,6 +1,6 @@
 package TermApp;
 
-public abstract class Manager extends TEMPARRAYS{
+public abstract class Manager
 {
     //Properties 
     private String firstName;
@@ -10,12 +10,12 @@ public abstract class Manager extends TEMPARRAYS{
     private String emailAddress;
     private String managerID;
 
-    //pull tempArray
-    TEMPARRAYS temp = new TEMPARRAYS();
-
-    // 
-    public Evaluation manageEvals(int index, Evaluation evaluation)
+    public Manager(String first, String last)
     {
-        return evaluation.getEval(index);
+            this.firstName = first;
+            this.lastName = last;
+            this.phoneNunber = 0;
+
+            
     }
 }
