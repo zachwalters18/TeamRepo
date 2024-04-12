@@ -1,4 +1,3 @@
-/*
 package TermApp;
 
 import java.util.ArrayList;
@@ -14,8 +13,10 @@ public class User {
     private String password;
     private Boolean loggedIn = false;
     //default constructor
-    public User() {
-
+    public User(String givenUsername, String givenPassword) {
+        setUserID(createNewUserID());
+        setUsername(givenUsername);
+        setPassword(givenPassword);
     }
     //setters
     private void setUserID(String userID) {
@@ -38,9 +39,9 @@ public class User {
         return password;
     }
     //adds a new user to the user array
-    public void addUser(int givenUserID, String givenUsername, String givenPassword) {
+    public void addUser(String givenUsername, String givenPassword) {
         User newUser = new User();
-        newUser.setUserID(givenUserID);
+        newUser.setUserID(createNewUserID());
         newUser.setUsername(givenUsername);
         newUser.setPassword(givenPassword);
         //user is added to "users" array list
@@ -161,4 +162,3 @@ public class User {
         updatedUsers.add(fake3);
     }
 }
-*/
