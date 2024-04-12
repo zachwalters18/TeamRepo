@@ -11,6 +11,10 @@ public class TEMPARRAYS {
     private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
     private ArrayList<Skills> skills = new ArrayList<Skills>();
     private ArrayList<Job> jobs = new ArrayList<Job>();
+    //default constructor
+    public TEMPARRAYS() {
+        
+    }
     //users methods
     protected ArrayList<User> getUsers() {
         return this.users;
