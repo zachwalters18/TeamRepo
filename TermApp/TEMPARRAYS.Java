@@ -41,11 +41,24 @@ public class TEMPARRAYS {
         this.projects = updatedProjects;
     }
     //evaluations methods
+    // make the evaluation objectts for the array list
+    Evaluation eval1 = new Evaluation("Roland Eric", 37)
+
+    public void addEvaluation(){
+        
+    }
+    
+    Evaluation.add(eval1);
     protected ArrayList<Evaluation> getEvaluations(){
         return this.evaluations;
     }
     protected void setEvaluations(ArrayList<Evaluation> updatedEvaluations) {
         this.evaluations = updatedEvaluations;
+    }
+
+    public void addEvaluation(Evaluation )
+    {
+
     }
     //skills methods
 
