@@ -4,7 +4,7 @@ public class Manager{
     //Properties 
     private String firstName;
     private String lastName;
-    private int phoneNunber;
+    private double phoneNunber;
     private String address;
     private String emailAddress;
     private String managerID;
@@ -13,7 +13,10 @@ public class Manager{
     {
             this.firstName = first;
             this.lastName = last;
-            this.phoneNunber = 0;
+            this.phoneNunber = Math.floor(Math.random() * 1000000000);
+            this.address = " ";
+            this.emailAddress = " ";
+            this.managerID = " ";
 
             
     }
