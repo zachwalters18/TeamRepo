@@ -1,12 +1,17 @@
 package TermApp;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TEMPARRAYS {
     private ArrayList<Object[]> arrays;
+    private Object[] Managers;
+    Scanner scn = new Scanner(System.in);
 
     public TEMPARRAYS() {
         arrays = new ArrayList<>();
+        Managers = new Object[30];
+        arrays.add(Managers);
     }
 
     // Method to add an item to an array
@@ -63,6 +68,42 @@ public class TEMPARRAYS {
             System.out.println();
         } else {
             System.err.println("Array index out of bounds");
+        }
+    }
+
+    public void addManager()
+    {
+        int index = 0;
+        while (index < Managers.length && Managers[index] != null) 
+        {
+            index++;
+        }
+
+        // Check if there is space in the array
+        if (index < Managers.length) 
+        {
+            System.out.println("Enter Manager First Name:");
+            String firstName = scn.nextLine();
+
+            System.out.println("Enter Manager Last Name:");
+            String lastName = scn.nextLine();
+
+            System.out.println("Enter Manager Phone Number:");
+            long phoneNumber = scn.nextLong();
+            scn.nextLine();
+
+            System.out.println("Enter Manager Physical Address:");
+            String address = scn.nextLine();
+
+            System.out.println("Enter Manager Email Address");
+            String emailAddress = scn.nextLine();
+
+            System.out.println("Enter Manager Manager ID:");
+            String managerID = scn.nextLine();
+
+            Managers[index] = new Manager(firstName, lastName, phoneNumber, address, emailAddress, managerID);
+        } else {
+            System.out.println("Array is full, cannot add more objects.");
         }
     }
 
