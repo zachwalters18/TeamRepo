@@ -1,24 +1,31 @@
 package TermApp;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Evaluation 
 {
     // Properties 
     private int evaluationID;
-    private String evalaluationType;
-    private String evaluationAnswers;
+    private String evaluationDate;
     private String evaluator;
-    private Object[] EvalArray;
+    private ArrayList<String> answers;
+    private ArrayList<String> questions;
 
     //Methods
-    public Evaluation(String evaler, int evalID)
+    public Evaluation(String evaler, String date)
     {
+        questions = new ArrayList<>();
+        answers = new ArrayList<>();
         this.evaluator = evaler;
-        this.evaluationID = evalID;
-        
-    }
+        this.evaluationDate = date;
+        questions.add(0, "How would you describe your mental state while at the workplace?");
+        answers.add(0, " ");
 
-    public Object getEval(int index)
-    {
-        return EvalArray[index];
+        questions.add(1, "On a scale of 1 to 10 how would you ");
+        answers.add(1, " ");
+
+
+        
     }
 }
