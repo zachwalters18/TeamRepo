@@ -1,11 +1,16 @@
 package TermApp;
 
-public class Main 
+public class Main extends Employee
 {
     
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) { 
+  
+    
+        
+    
 
-    }
+   
+    
+}
     
 }

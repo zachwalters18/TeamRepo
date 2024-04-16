@@ -1,14 +1,16 @@
 package TermApp;
 
 
-public class Skills extends Manager {
+public class Skills {
     String skillID;
     String hardSkill;
     String softSkill;
-    String skillDescription;
+    
 
-    public Skills() {
-        
+    public Skills(String skillID, String hardSkill, String softSkill) {
+        this.skillID = skillID;
+        this.hardSkill = hardSkill;
+        this.softSkill = softSkill;
     }
 
     public void setSkillID(String skillID) {
@@ -22,16 +24,10 @@ public class Skills extends Manager {
     public void setSoftSkill(String softSkill) {
         this.softSkill = softSkill;
     }
-
-    public void setSkillDescription(String skillDescription) {
-        this.skillDescription = skillDescription;
-    }
     
     public String getSkillID() {
         return skillID;
     }
-}
-public class Skills extends TEMPARRAYS{
 
     
     public String getHardSkill() {
@@ -41,21 +37,4 @@ public class Skills extends TEMPARRAYS{
     public String getSoftSkill() {
         return softSkill;
     }
-
-    public String getSkillDescription() {
-        return skillDescription;
-    }
-    
-    public void addSkill() {
-    
-    }
-    
-    public void editSkill() {
-    
-    }
-    
-    public void delSkill() {
-    
-    }
-
 }

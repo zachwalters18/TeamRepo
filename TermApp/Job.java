@@ -1,14 +1,14 @@
 
 package TermApp;
 
-public class Job extends Manager {
-    TEMPARRAYS tempArrays = new TEMPARRAYS();
+public class Job {
     private String jobID;
     private String title;
-    private String experienceReq;
     
-    public Job() {
-        
+    
+    public Job(String jobID, String title) {
+        this.jobID = jobID;
+        this.title = title;
     }
     
     public void setJobID(String jobID) {
@@ -19,10 +19,6 @@ public class Job extends Manager {
         this.title = title;
     }
     
-    public void setExperienceReq(String experienceReq) {
-        this.experienceReq = experienceReq;
-    }
-    
     public String getJobID() {
         return jobID;
     }
@@ -31,20 +27,5 @@ public class Job extends Manager {
         return title;
     }
     
-    public String getExperienceReq() {
-        return experienceReq;
-    }
-    
-    public void addJob() {
-    
-    }
-    
-    public void editJob() {
-    
-    }
-    
-    public void delJob() {
-    
-    }
     
 }
