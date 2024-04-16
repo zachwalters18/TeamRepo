@@ -1,12 +1,19 @@
 package TermApp;
 
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class TEMPARRAYS {
-    private ArrayList<Object[]> arrays;
-
+    private ArrayList<ArrayList> arrays;
+    public Scanner scnr = new Scanner();
+    //public constructor
     public TEMPARRAYS() {
-        arrays = new ArrayList<>();
+        ArrayList<User> users = new ArrayList<User>();
+        arrays.add(users);
+        ArrayList<Team> teams = new ArrayList<Team>();
+        arrays.add(teams);
+        ArrayList<Project> projects = new ArrayList<Project>();
+        array.add(projects);
     }
 
     // Method to add an item to an array
@@ -69,5 +76,121 @@ public class TEMPARRAYS {
     // Method to add a new array
     public void addArray(Object[] newArray) {
         arrays.add(newArray);
+    }
+
+    //USERS
+    //getter for users
+    public void getUsers() {
+        return users;
+    }
+    //a new User is created and added to the users array
+    public void addUser(String givenUsername, String givenPassword) {  
+        User newUser = new User();
+        newUser.setUserID(createNewUserID());
+        newUser.setUsername(givenUsername);
+        newUser.setPassword(givenPassword);
+        //user is added to "users" array list
+        ArrayList<User> updatedUsers = getUsers();
+        updatedUsers.add(newUser);
+        setUsers(updatedUsers);
+    }
+    //username and password are able to be edited
+    public void updateUser(int givenUserID, String givenUsername, String givenPassword) {
+        User selectedUser = findUser(               //locates user
+            givenUsername,
+            givenPassword,
+            givenUserID                             //FIXME should i check for an integer?
+        );
+        ArrayList<User> updatedUsers = getUsers();
+        updatedUsers.remove(selectedUser);          //removes old user
+        String newUsername = scnr.nextLine();
+        String newPassword = scnr.nextLine();
+        selectedUser.setUsername(newUsername);      //update username
+        selectedUser.setPassword(newPassword);      //update password
+        updatedUsers.add(newUser);                  //adds updated user
+        setUsers(updatedUsers);
+    }
+    //deletes selected user
+    public void deleteUser(int givenUserID, String givenUsername, String givenPassword) {
+        User selectedUser = findUser(   //locates user
+            givenUsername,
+            givenPassword,
+            givenUserID
+        );
+        //selected user is deleted from "users" array list
+        ArrayList<User> updatedUsers = getUsers();
+        updatedUsers.remove(selectedUser);
+        setUsers(updatedUsers);
+    }
+    //creates fake users and adds them to the users array
+    public void createFakeUsers() {
+        //creates 3 fake users
+        User fake1 = new User("player12", "memeLord123");
+        User fake2 = new User("LOOK1", "password");
+        User fake3 = new User("David", "ijustdo");
+        //adds fake users to arrayList "users"
+        ArrayList<User> updatedUsers = getUsers();
+        updatedUsers.add(fake1);
+        updatedUsers.add(fake2);
+        updatedUsers.add(fake3);
+    }
+    //TEAMS
+    //getter for teams
+    public void getTeams() {
+        return teams;
+    }
+    //adds a new team
+    
+    //PROJECTS
+    //getter for projects
+    public void getProjects() {
+        return projects;
+    }
+    //adds a new project to the array list (projects)
+    public void addProject(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus) {
+        Project newProject = new Project();
+        newProject.setProjectID(createProjectID());
+        newProject.setProjectName(givenProjectName);
+        newProject.setStartDate(givenStartDate);
+        newProject.setEndDate(givenEndDate);
+        newProject.setStatus(givenStatus);
+        ArrayList<Project> updatedProjects = getProjects();
+        updatedProjects.add(newProject);
+        setProjects(updatedProjects);
+    }
+    //updates selected project
+    public void updateProject(int givenProductID) {
+        Project selectedProject = findProject(givenProductID);   //locates project
+        ArrayList<Project> updatedProjects = getProjects();
+        updatedProjects.remove(selectedProject);          //removes old project
+        String newProductName = nextLine();
+        String newStartDate = nextLine();
+        String newEndDate = nextLine();
+        String newStatus = nextLine();
+        selectedProject.setProjectName(newProductName); //update projectName
+        selectedProject.setStartDate(newStartDate);
+        selectedProject.setEndDate(newEndDate);
+        selectedProject.setStatus(newStatus);
+        updatedProjects.add(newProject);                  //adds updated project
+        setProjects(updatedProjects);
+    }
+    //deletes selected project
+    private void deleteProject(int givenProductID) {
+        Project selectedProject = findProject(givenProductID);   //locates project
+        //selected user is deleted from "users" array list
+        ArrayList<Project> updatedProjects = getProjects();
+        updatedProjects.remove(selectedProject);
+        setProjects(updatedProjects);
+    }
+    public void createFakeProjects() {
+        //creates 3 fake projects
+        Project fake1 = new Project("Delta", "01/02/24", "12/02/25", "For this project, we are collecting as much gold fish that we can.");
+        Project fake2 = new Project("Alpha", "07/02/04", "04/07/24", "Buy all the items within Walmart...");
+        Project fake3 = new Project("Project Awesome!", "12/12/12", "24/11/24", "Create a HR application that has all the bells and wristles.");
+        //adds fake projects to arrayList "projects"
+        ArrayList<Project> updatedProjects = getProjects();
+        updatedProjects.add(fake1);
+        updatedProjects.add(fake2);
+        updatedProjects.add(fake3);
     }
 }
