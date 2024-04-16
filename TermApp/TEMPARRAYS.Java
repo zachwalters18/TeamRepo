@@ -5,18 +5,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TEMPARRAYS {
-
-    private ArrayList<ArrayList> arrays;
+    //this array list holds all other array lists
+    private ArrayList[] arrays = new ArrayList[3];  //FIXME INCREASE NUMBER FOR NEWLY ADDED ARRAYSLISTS
     public Scanner scnr = new Scanner();
     //public constructor
     public TEMPARRAYS() {
         ArrayList<User> users = new ArrayList<User>();
-        arrays.add(users);
+        arrays[0] = users;
         ArrayList<Team> teams = new ArrayList<Team>();
-        arrays.add(teams);
+        arrays[1] = teams;
         ArrayList<Project> projects = new ArrayList<Project>();
-        array.add(projects);
+        array[2] = projects;
+    }
     //decide what to do later
+    /*
     private ArrayList<Object[]> arrays;
     private Object[] Managers;
     Scanner scn = new Scanner(System.in);
@@ -26,7 +28,6 @@ public class TEMPARRAYS {
         Managers = new Object[30];
         arrays.add(Managers);
     }
-
     // Method to add an item to an array
     public void addItemToArray(int arrayIndex, Object item) {
         if (arrayIndex >= 0 && arrayIndex < arrays.size()) {
@@ -83,7 +84,8 @@ public class TEMPARRAYS {
             System.err.println("Array index out of bounds");
         }
     }
-
+    */
+    //MANAGER   
     public void addManager()
     {
         int index = 0;
