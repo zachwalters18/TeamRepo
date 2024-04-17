@@ -90,7 +90,7 @@ public class TEMPARRAYS {
     //username and password are able to be edited
     public void updateUser(int givenUserID) {
         User selectedUser = findUser(givenUserID);
-        ArrayList<Object> updatedUsers = getUsers();
+        Object[] updatedUsers = getUsers();
         updatedUsers.remove(selectedUser);          //removes old user
         String newUsername = scnr.nextLine();
         String newPassword = scnr.nextLine();
@@ -103,7 +103,7 @@ public class TEMPARRAYS {
     public void deleteUser(int givenUserID) {
         User selectedUser = findUser(givenUserID);
         //selected user is deleted from "users" array list
-        ArrayList<Object> updatedUsers = getUsers();
+        Object[] updatedUsers = getUsers();
         updatedUsers.remove(selectedUser);
         setUsers(updatedUsers);
     }
@@ -114,25 +114,21 @@ public class TEMPARRAYS {
         User fake2 = new User("LOOK1", "password");
         User fake3 = new User("David", "ijustdo");
         //adds fake users to arrayList "users"
-        ArrayList<Object> updatedUsers = getUsers();
+        Object[] updatedUsers = getUsers();
         updatedUsers.add(fake1);
         updatedUsers.add(fake2);
         updatedUsers.add(fake3);
         setUsers(updatedUsers);
     }
     //locates user with the givens then outputs that user
-    public Object findUser(String givenUsername, String givenPassword, int givenUserID) {
-        ArrayList<User> users = getUsers();
+    public Object findUser(int givenUserID) {
+        Object[] users = getUsers();
         String answer;
         boolean noUserfound = true;
         while (noUserfound) {
             List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
                 .filter(user -> 
-                    user.getUsername().equals(givenUsername)
-                    &&
-                    user.getPassword().equals(givenPassword)
-                    &&
-                    user.getUserID().equals(givenID))
+                    user.getUserID == givenID)
                 .collect(Collectors.toList());
             //checks if user is found
             if (filteredUsers.isEmpty()) {  
