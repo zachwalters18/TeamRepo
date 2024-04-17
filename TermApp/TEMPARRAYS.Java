@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class TEMPARRAYS {
     private ArrayList<Object[]> arrays;
-    private ArrayList<User> Users = new ArrayList<User>;    //adjust amount of objects in the array here
+    private ArrayList<User> users = new ArrayList<User>();    //adjust amount of objects in the array here
     private Object[] Managers = new Object[30];
     Scanner scn = new Scanner(System.in);
 
