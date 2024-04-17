@@ -55,45 +55,6 @@ public class User extends TEMPARRAYS{
         }
         return newUserID;
     }
-    //locates user with the givens then outputs that user
-    public User findUser(String givenUsername, String givenPassword, int givenUserID) {
-        ArrayList<User> users = getUsers();
-        String answer;
-        boolean noUserfound = true;
-        while (noUserfound) {
-            List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
-                .filter(user -> 
-                    user.getUsername().equals(givenUsername)
-                    &&
-                    user.getPassword().equals(givenPassword)
-                    &&
-                    user.getUserID().equals(givenID))
-                .collect(Collectors.toList());
-            //checks if user is found
-            if (filteredUsers.isEmpty()) {  
-                //if user is not found, re-enter information or quit searching
-                System.out.println("INCORRECT INFORMATION");
-                System.out.println("Do you wish to keep searching? (y/n)")
-                answer = scnr.nextLine();
-                if (answer == 'y') {
-                    break;
-                } else {
-                    continue;
-                }
-                System.out.println("Re-enter Username: ");
-                givenUsername = scnr.nextLine();
-                System.out.println("Re-enter Password: ");
-                givenPassword = scnr.nextLine();
-                System.out.println("Re-enter User ID: ");
-                givenUserID = scnr.nextLine();
-            } else {
-                noUserfound = false;
-                User selectedUser = filteredUsers.get(0);
-            }
-        }
-        //FIXME bug program will crash if a user is not found
-        return selectedUser;
-    }
     //checks for correct username and password then logs in by setting loggedIn to true
     public void logIn(String givenUsername, String givenPasword) {
         while (loggedIn) {

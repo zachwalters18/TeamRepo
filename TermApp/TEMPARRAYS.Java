@@ -5,28 +5,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TEMPARRAYS {
-    //this array list holds all other array lists
-    private ArrayList[] arrays = new ArrayList[3];  //FIXME INCREASE NUMBER FOR NEWLY ADDED ARRAYSLISTS
-    public Scanner scnr = new Scanner();
-    //public constructor
-    public TEMPARRAYS() {
-        ArrayList<User> users = new ArrayList<User>();
-        arrays[0] = users;
-        ArrayList<Team> teams = new ArrayList<Team>();
-        arrays[1] = teams;
-        ArrayList<Project> projects = new ArrayList<Project>();
-        array[2] = projects;
-    }
-    //decide what to do later
-    /*
     private ArrayList<Object[]> arrays;
-    private Object[] Managers;
+    private Object[] Users = new Object[10];    //adjust amount of objects in the array here
+    private Object[] Managers = new Object[30];
     Scanner scn = new Scanner(System.in);
 
     public TEMPARRAYS() {
         arrays = new ArrayList<>();
-        Managers = new Object[30];
         arrays.add(Managers);
+        arrays.add(Users);
     }
     // Method to add an item to an array
     public void addItemToArray(int arrayIndex, Object item) {
@@ -84,7 +71,94 @@ public class TEMPARRAYS {
             System.err.println("Array index out of bounds");
         }
     }
-    */
+    //USER 
+    public Object[] getUsers() {
+        return this.users;
+    }
+    
+    public void setUsers(Object[] users) {
+        this.users = users;
+    }
+   
+    public void addUser(String givenUsername, String givenPassword) {  
+        User newUser = new User(givenUsername, givenPassword);
+        //user is added to "users" array list
+        Object[] updatedUsers = getUsers();
+        updatedUsers.add(newUser);
+        setUsers(updatedUsers);
+    }
+    //username and password are able to be edited
+    public void updateUser(int givenUserID) {
+        User selectedUser = findUser(givenUserID);
+        ArrayList<Object> updatedUsers = getUsers();
+        updatedUsers.remove(selectedUser);          //removes old user
+        String newUsername = scnr.nextLine();
+        String newPassword = scnr.nextLine();
+        selectedUser.setUsername(newUsername);      //update username
+        selectedUser.setPassword(newPassword);      //update password
+        updatedUsers.add(newUser);                  //adds updated user
+        setUsers(updatedUsers);
+    }
+    //deletes selected user
+    public void deleteUser(int givenUserID) {
+        User selectedUser = findUser(givenUserID);
+        //selected user is deleted from "users" array list
+        ArrayList<Object> updatedUsers = getUsers();
+        updatedUsers.remove(selectedUser);
+        setUsers(updatedUsers);
+    }
+    //creates fake users and adds them to the users array
+    public void createFakeUsers() {
+        //creates 3 fake users
+        User fake1 = new User("player12", "memeLord123");
+        User fake2 = new User("LOOK1", "password");
+        User fake3 = new User("David", "ijustdo");
+        //adds fake users to arrayList "users"
+        ArrayList<Object> updatedUsers = getUsers();
+        updatedUsers.add(fake1);
+        updatedUsers.add(fake2);
+        updatedUsers.add(fake3);
+        setUsers(updatedUsers);
+    }
+    //locates user with the givens then outputs that user
+    public Object findUser(String givenUsername, String givenPassword, int givenUserID) {
+        ArrayList<User> users = getUsers();
+        String answer;
+        boolean noUserfound = true;
+        while (noUserfound) {
+            List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
+                .filter(user -> 
+                    user.getUsername().equals(givenUsername)
+                    &&
+                    user.getPassword().equals(givenPassword)
+                    &&
+                    user.getUserID().equals(givenID))
+                .collect(Collectors.toList());
+            //checks if user is found
+            if (filteredUsers.isEmpty()) {  
+                //if user is not found, re-enter information or quit searching
+                System.out.println("INCORRECT INFORMATION");
+                System.out.println("Do you wish to keep searching? (y/n)")
+                answer = scnr.nextLine();
+                if (answer == 'y') {
+                    break;
+                } else {
+                    continue;
+                }
+                System.out.println("Re-enter Username: ");
+                givenUsername = scnr.nextLine();
+                System.out.println("Re-enter Password: ");
+                givenPassword = scnr.nextLine();
+                System.out.println("Re-enter User ID: ");
+                givenUserID = scnr.nextLine();
+            } else {
+                noUserfound = false;
+                User selectedUser = filteredUsers.get(0);
+            }
+        }
+        //FIXME bug program will crash if a user is not found
+        return selectedUser;
+    }
     //MANAGER   
     public void addManager()
     {
@@ -125,121 +199,5 @@ public class TEMPARRAYS {
     // Method to add a new array
     public void addArray(Object[] newArray) {
         arrays.add(newArray);
-    }
-
-    //USERS
-    //getter for users
-    public void getUsers() {
-        return users;
-    }
-    //a new User is created and added to the users array
-    public void addUser(String givenUsername, String givenPassword) {  
-        User newUser = new User();
-        newUser.setUserID(createNewUserID());
-        newUser.setUsername(givenUsername);
-        newUser.setPassword(givenPassword);
-        //user is added to "users" array list
-        ArrayList<User> updatedUsers = getUsers();
-        updatedUsers.add(newUser);
-        setUsers(updatedUsers);
-    }
-    //username and password are able to be edited
-    public void updateUser(int givenUserID, String givenUsername, String givenPassword) {
-        User selectedUser = findUser(               //locates user
-            givenUsername,
-            givenPassword,
-            givenUserID                             //FIXME should i check for an integer?
-        );
-        ArrayList<User> updatedUsers = getUsers();
-        updatedUsers.remove(selectedUser);          //removes old user
-        String newUsername = scnr.nextLine();
-        String newPassword = scnr.nextLine();
-        selectedUser.setUsername(newUsername);      //update username
-        selectedUser.setPassword(newPassword);      //update password
-        updatedUsers.add(newUser);                  //adds updated user
-        setUsers(updatedUsers);
-    }
-    //deletes selected user
-    public void deleteUser(int givenUserID, String givenUsername, String givenPassword) {
-        User selectedUser = findUser(   //locates user
-            givenUsername,
-            givenPassword,
-            givenUserID
-        );
-        //selected user is deleted from "users" array list
-        ArrayList<User> updatedUsers = getUsers();
-        updatedUsers.remove(selectedUser);
-        setUsers(updatedUsers);
-    }
-    //creates fake users and adds them to the users array
-    public void createFakeUsers() {
-        //creates 3 fake users
-        User fake1 = new User("player12", "memeLord123");
-        User fake2 = new User("LOOK1", "password");
-        User fake3 = new User("David", "ijustdo");
-        //adds fake users to arrayList "users"
-        ArrayList<User> updatedUsers = getUsers();
-        updatedUsers.add(fake1);
-        updatedUsers.add(fake2);
-        updatedUsers.add(fake3);
-    }
-    //TEAMS
-    //getter for teams
-    public void getTeams() {
-        return teams;
-    }
-    //adds a new team
-    
-    //PROJECTS
-    //getter for projects
-    public void getProjects() {
-        return projects;
-    }
-    //adds a new project to the array list (projects)
-    public void addProject(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus) {
-        Project newProject = new Project();
-        newProject.setProjectID(createProjectID());
-        newProject.setProjectName(givenProjectName);
-        newProject.setStartDate(givenStartDate);
-        newProject.setEndDate(givenEndDate);
-        newProject.setStatus(givenStatus);
-        ArrayList<Project> updatedProjects = getProjects();
-        updatedProjects.add(newProject);
-        setProjects(updatedProjects);
-    }
-    //updates selected project
-    public void updateProject(int givenProductID) {
-        Project selectedProject = findProject(givenProductID);   //locates project
-        ArrayList<Project> updatedProjects = getProjects();
-        updatedProjects.remove(selectedProject);          //removes old project
-        String newProductName = nextLine();
-        String newStartDate = nextLine();
-        String newEndDate = nextLine();
-        String newStatus = nextLine();
-        selectedProject.setProjectName(newProductName); //update projectName
-        selectedProject.setStartDate(newStartDate);
-        selectedProject.setEndDate(newEndDate);
-        selectedProject.setStatus(newStatus);
-        updatedProjects.add(newProject);                  //adds updated project
-        setProjects(updatedProjects);
-    }
-    //deletes selected project
-    private void deleteProject(int givenProductID) {
-        Project selectedProject = findProject(givenProductID);   //locates project
-        //selected user is deleted from "users" array list
-        ArrayList<Project> updatedProjects = getProjects();
-        updatedProjects.remove(selectedProject);
-        setProjects(updatedProjects);
-    }
-    public void createFakeProjects() {
-        //creates 3 fake projects
-        Project fake1 = new Project("Delta", "01/02/24", "12/02/25", "For this project, we are collecting as much gold fish that we can.");
-        Project fake2 = new Project("Alpha", "07/02/04", "04/07/24", "Buy all the items within Walmart...");
-        Project fake3 = new Project("Project Awesome!", "12/12/12", "24/11/24", "Create a HR application that has all the bells and wristles.");
-        //adds fake projects to arrayList "projects"
-        ArrayList<Project> updatedProjects = getProjects();
-        updatedProjects.add(fake1);
-        updatedProjects.add(fake2);
-        updatedProjects.add(fake3);
     }
 }
