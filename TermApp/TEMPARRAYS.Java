@@ -128,7 +128,7 @@ public class TEMPARRAYS {
         while (noUserfound) {
             List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
                 .filter(user -> 
-                    user.getUserID == givenID)
+                    user.userID == givenID)
                 .collect(Collectors.toList());
             //checks if user is found
             if (filteredUsers.isEmpty()) {  

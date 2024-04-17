@@ -44,7 +44,7 @@ public class User extends TEMPARRAYS{
     }
     //creates a new user ID, validates it, and returns it
     public int createNewUserID() {
-        ArrayList<User> users = getUsers();
+        Object[] users = getUsers();
         int newUserID = 0;
         while (!(filteredUsers.isEmpty())) {        //when filteredUsers is empty, a new ID is made
             newUserID = (int)(Math.random() * 100);  //only 100 IDs available
