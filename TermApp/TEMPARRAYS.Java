@@ -6,14 +6,13 @@ import java.util.Scanner;
 
 public class TEMPARRAYS {
     private ArrayList<Object[]> arrays;
-    private Object[] Users = new Object[10];    //adjust amount of objects in the array here
+    private ArrayList<User> Users = new ArrayList<User>;    //adjust amount of objects in the array here
     private Object[] Managers = new Object[30];
     Scanner scn = new Scanner(System.in);
 
     public TEMPARRAYS() {
         arrays = new ArrayList<>();
         arrays.add(Managers);
-        arrays.add(Users);
     }
     // Method to add an item to an array
     public void addItemToArray(int arrayIndex, Object item) {
@@ -72,25 +71,26 @@ public class TEMPARRAYS {
         }
     }
     //USER 
-    public Object[] getUsers() {
+    public ArrayList<User> getUsers() {
         return this.users;
     }
-    
-    public void setUsers(Object[] users) {
+
+    public void setUsers(ArrayList<User> users) {
         this.users = users;
     }
-   
+    //adds a new user to the "users" array
     public void addUser(String givenUsername, String givenPassword) {  
-        User newUser = new User(givenUsername, givenPassword);
+        ArrayList<User> updatedUsers = getUsers();
+        User newUser = new User(givenUsername, givenPassword, updateUsers);
         //user is added to "users" array list
-        Object[] updatedUsers = getUsers();
         updatedUsers.add(newUser);
         setUsers(updatedUsers);
     }
     //username and password are able to be edited
     public void updateUser(int givenUserID) {
-        User selectedUser = findUser(givenUserID);
-        Object[] updatedUsers = getUsers();
+        User selectedUser = new User();     //findUser requires a User to be created to call the method (findUser)
+        ArrayList<User> updatedUsers = getUsers();
+        selectedUser = selectedUser.findUser(updatedUsers, givenUserID);
         updatedUsers.remove(selectedUser);          //removes old user
         String newUsername = scnr.nextLine();
         String newPassword = scnr.nextLine();
@@ -101,59 +101,25 @@ public class TEMPARRAYS {
     }
     //deletes selected user
     public void deleteUser(int givenUserID) {
-        User selectedUser = findUser(givenUserID);
+        User selectedUser = new User();
+        ArrayList<User> updatedUsers = getUsers();
+        User selectedUser = selectedUser.findUser(updatedUsers, givenUserID);
         //selected user is deleted from "users" array list
-        Object[] updatedUsers = getUsers();
         updatedUsers.remove(selectedUser);
         setUsers(updatedUsers);
     }
     //creates fake users and adds them to the users array
     public void createFakeUsers() {
+        ArrayList<User> updatedUsers = getUsers();
         //creates 3 fake users
-        User fake1 = new User("player12", "memeLord123");
-        User fake2 = new User("LOOK1", "password");
-        User fake3 = new User("David", "ijustdo");
+        User fake1 = new User("player12", "memeLord123", updateUsers);
+        User fake2 = new User("LOOK1", "password", updatedUsers);
+        User fake3 = new User("David", "ijustdo", updatedUsers);
         //adds fake users to arrayList "users"
-        Object[] updatedUsers = getUsers();
         updatedUsers.add(fake1);
         updatedUsers.add(fake2);
         updatedUsers.add(fake3);
         setUsers(updatedUsers);
-    }
-    //locates user with the givens then outputs that user
-    public Object findUser(int givenUserID) {
-        Object[] users = getUsers();
-        String answer;
-        boolean noUserfound = true;
-        while (noUserfound) {
-            List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
-                .filter(user -> 
-                    user.userID == givenID)
-                .collect(Collectors.toList());
-            //checks if user is found
-            if (filteredUsers.isEmpty()) {  
-                //if user is not found, re-enter information or quit searching
-                System.out.println("INCORRECT INFORMATION");
-                System.out.println("Do you wish to keep searching? (y/n)")
-                answer = scnr.nextLine();
-                if (answer == 'y') {
-                    break;
-                } else {
-                    continue;
-                }
-                System.out.println("Re-enter Username: ");
-                givenUsername = scnr.nextLine();
-                System.out.println("Re-enter Password: ");
-                givenPassword = scnr.nextLine();
-                System.out.println("Re-enter User ID: ");
-                givenUserID = scnr.nextLine();
-            } else {
-                noUserfound = false;
-                User selectedUser = filteredUsers.get(0);
-            }
-        }
-        //FIXME bug program will crash if a user is not found
-        return selectedUser;
     }
     //MANAGER   
     public void addManager()

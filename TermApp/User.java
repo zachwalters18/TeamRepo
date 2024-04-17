@@ -17,12 +17,15 @@ public class User extends TEMPARRAYS{
 
     }
 
-    public User(String givenUsername, String givenPassword) {
-        setUserID(createNewUserID());
+    public User(String givenUsername, String givenPassword, ArrayList<User> users) {
+        setUserID(createNewUserID(users));
         setUsername(givenUsername);
         setPassword(givenPassword);
     }
     //setters
+    public void setUser(User newUser) {
+        this.User = newUser;
+    }
     public void setUserID(String userID) {
         this.userID = userID;
     }
@@ -42,9 +45,33 @@ public class User extends TEMPARRAYS{
     public String getPassword() {
         return password;
     }
+    //locates User
+    public User findUser(ArrayList<User> users, int givenUserID) {
+        boolean noUserfound = true;
+        while (noUserfound) {
+            List<User> filteredUsers = users.stream()   //stream checks any user with same username or password
+                .filter(user -> 
+                    user.userID == givenID)
+                .collect(Collectors.toList());
+            //checks if user is found
+            if (filteredUsers.isEmpty()) {  
+                //if user is not found, re-enter information or quit searching
+                System.out.println("INCORRECT INFORMATION");
+                System.out.println("Re-enter Username: ");
+                givenUsername = scnr.nextLine();
+                System.out.println("Re-enter Password: ");
+                givenPassword = scnr.nextLine();
+                System.out.println("Re-enter User ID: ");
+                givenUserID = scnr.nextLine();
+            } else {
+                noUserfound = false;
+                User selectedUser = filteredUsers.get(0);
+            }
+        }
+        return selectedUser;
+    }
     //creates a new user ID, validates it, and returns it
-    public int createNewUserID() {
-        Object[] users = getUsers();
+    public int createNewUserID(ArrayList<User> users) {
         int newUserID = 0;
         while (!(filteredUsers.isEmpty())) {        //when filteredUsers is empty, a new ID is made
             newUserID = (int)(Math.random() * 100);  //only 100 IDs available
@@ -67,8 +94,7 @@ public class User extends TEMPARRAYS{
         this.loggedIn = false;
     }
     //validates User when given username and password and searches for a match
-    public boolean validateUser(String givenUsername, String givenPassword) {
-        ArrayList<User> users = getUsers();
+    public boolean validateUser(ArrayList<User> users, String givenUsername, String givenPassword) {
         //stream checks any user with same username or password
         List<User> filteredUsers = users.stream()
             .filter(user -> 
