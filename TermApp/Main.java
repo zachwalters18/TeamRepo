@@ -36,5 +36,9 @@ public class Main extends TEMPARRAYS{
                 System.out.println("INCORRECT INPUT ");
             }
         }
+
+        //Manager methods tests
+        temp.addManager();
+        temp.deleteManager(0);
     }
 }
