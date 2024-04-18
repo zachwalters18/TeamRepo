@@ -185,10 +185,27 @@ public class TEMPARRAYS {
 
             System.out.println("Enter Manager Manager ID:");
             String managerID = scn.nextLine();
-
+                // takes in the new scanenr inputs and passes it to the Manager constructor
             Managers[index] = new Manager(firstName, lastName, phoneNumber, address, emailAddress, managerID);
         } else {
             System.out.println("Array is full, cannot add more objects.");
+        }
+    }
+
+    public void deleteManager(int index)
+    {
+                // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
+            if (index < 0 || index >= Managers.length) {
+                throw new IndexOutOfBoundsException("Index out of bounds");
+            }
+    
+            // Shift elements to the left starting from the index to remove
+            for (int i = index; i < Managers.length - 1; i++) {
+                Managers[i] = Managers[i + 1];
+            }
+    
+            // Set the last element to null to remove it
+            Managers[Managers.length - 1] = null;
         }
     }
 
