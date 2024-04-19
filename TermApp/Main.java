@@ -37,8 +37,5 @@ public class Main extends TEMPARRAYS{
             }
         }
 
-        //Manager methods tests
-        temp.addManager();
-        temp.deleteManager(0);
     }
 }
