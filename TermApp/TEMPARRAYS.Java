@@ -2,17 +2,16 @@ package TermApp;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TEMPARRAYS {
     private ArrayList<Object[]> arrays;
     private ArrayList<User> users = new ArrayList<User>();    //adjust amount of objects in the array here
-    private Object[] Managers = new Object[30];
+    private Object[] Evaluations = new Object[30]; //add the evaluations array and sets its capacity
     Scanner scn = new Scanner(System.in);
 
     public TEMPARRAYS() {
         arrays = new ArrayList<>();
-        arrays.add(Managers);
+        arrays.add(Evaluations); //adds evaluations array of objects to the arraylist
     }
     // Method to add an item to an array
     public void addItemToArray(int arrayIndex, Object item) {
@@ -121,81 +120,62 @@ public class TEMPARRAYS {
         updatedUsers.add(fake3);
         setUsers(updatedUsers);
     }
-    //MANAGER   
-    public void addManager()
+    
+    // Evaluation methods 
+    public void deleteEval(int index)
+    {
+                // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
+            if (index < 0 || index >= Evaluations.length) {
+                throw new IndexOutOfBoundsException("Index out of bounds");
+            }
+    
+            // Shift elements to the left starting from the index to remove
+            for (int i = index; i < Evaluations.length - 1; i++) {
+                Evaluations[i] = Evaluations[i + 1];
+            }
+    
+            // Set the last element to null to remove it
+            Evaluations[Evaluations.length - 1] = null;
+    }
+
+    public void updateEvals(int index, String evalp,String time,String ans1,String ans2,String ans3)
+    {
+
+        // Evaluations index out of bounds check
+        if (index >= 0 && index < Evaluations.length) 
+        {
+            Evaluations[index] = new Evaluation(evalp, time, ans1, ans2, ans3);
+        } else {
+            System.out.println("Invalid index specified.");
+        }
+    }
+
+    public void addEvals(String evalp,String time,String ans1,String ans2,String ans3)
     {
         int index = 0;
-        while (index < Managers.length && Managers[index] != null) 
+        while (index < Evaluations.length && Evaluations[index] != null) 
         {
             index++;
         }
 
         // Check if there is space in the array
-        if (index < Managers.length) 
+        if (index < Evaluations.length)
         {
-            System.out.println("Enter Manager First Name:");
-            String firstName = scn.nextLine();
 
-            System.out.println("Enter Manager Last Name:");
-            String lastName = scn.nextLine();
-
-            System.out.println("Enter Manager Phone Number:");
-            int phoneNumber = scn.nextInt();
-            scn.nextLine();
-
-            System.out.println("Enter Manager Physical Address:");
-            String address = scn.nextLine();
-
-            System.out.println("Enter Manager Email Address");
-            String emailAddress = scn.nextLine();
-
-            System.out.println("Enter Manager Manager ID:");
-            String managerID = scn.nextLine();
-                // takes in the new scanenr inputs and passes it to the Manager constructor
-            Managers[index] = new Manager(firstName, lastName, phoneNumber, address, emailAddress, managerID);
+                // takes in arguments and passes it to the Evaluation constructor
+            Evaluations[index] = new Evaluation(evalp, time, ans1, ans2, ans3);
         } else {
             System.out.println("Array is full, cannot add more objects.");
         }
     }
 
-    public void deleteManager(int index)
+    public void displayEvals(int index)
     {
-                // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
-            if (index < 0 || index >= Managers.length) {
-                throw new IndexOutOfBoundsException("Index out of bounds");
-            }
-    
-            // Shift elements to the left starting from the index to remove
-            for (int i = index; i < Managers.length - 1; i++) {
-                Managers[i] = Managers[i + 1];
-            }
-    
-            // Set the last element to null to remove it
-            Managers[Managers.length - 1] = null;
+        // takes the object at the specified index and prints it as a string
+        System.out.println(Evaluations[index]);
     }
 
-    public void updateManager(int index)
-    {
-        String firstName = scn.nextLine();
-        String lastName = scn.nextLine();
-        int phoneNumber = scn.nextInt();
-        scn.nextLine();
-        String address = scn.nextLine();
-        String emailAddress = scn.nextLine();
-        String managerID = scn.nextLine();
 
-        // Assuming Managers is an array of Manager objects
-        if (index >= 0 && index < Managers.length) 
-        {
-            Managers[index].setFirstName(firstName);
-            Managers[index].setLastName(lastName);
-            Managers[index].setPhoneNumber(phoneNumber);
-            Managers[index].setAddress(address);
-            Managers[index].setEmailAddress(emailAddress);
-            Managers[index].setManagerID(managerID);
-        } else {
-            System.out.println("Invalid index specified.");
-        }
 
     // Method to add a new array
     public void addArray(Object[] newArray) {
