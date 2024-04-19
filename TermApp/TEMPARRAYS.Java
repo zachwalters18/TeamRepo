@@ -140,7 +140,7 @@ public class TEMPARRAYS {
             String lastName = scn.nextLine();
 
             System.out.println("Enter Manager Phone Number:");
-            long phoneNumber = scn.nextLong();
+            int phoneNumber = scn.nextInt();
             scn.nextLine();
 
             System.out.println("Enter Manager Physical Address:");
@@ -172,11 +172,35 @@ public class TEMPARRAYS {
     
             // Set the last element to null to remove it
             Managers[Managers.length - 1] = null;
-        }
     }
+
+    public void updateManager(int index)
+    {
+        String firstName = scn.nextLine();
+        String lastName = scn.nextLine();
+        int phoneNumber = scn.nextInt();
+        scn.nextLine();
+        String address = scn.nextLine();
+        String emailAddress = scn.nextLine();
+        String managerID = scn.nextLine();
+
+        // Assuming Managers is an array of Manager objects
+        if (index >= 0 && index < Managers.length) 
+        {
+            Managers[index].setFirstName(firstName);
+            Managers[index].setLastName(lastName);
+            Managers[index].setPhoneNumber(phoneNumber);
+            Managers[index].setAddress(address);
+            Managers[index].setEmailAddress(emailAddress);
+            Managers[index].setManagerID(managerID);
+        } else {
+            System.out.println("Invalid index specified.");
+        }
 
     // Method to add a new array
     public void addArray(Object[] newArray) {
-        arrays.add(newArray);
+        
+            arrays.add(newArray);
+        
     }
 }
