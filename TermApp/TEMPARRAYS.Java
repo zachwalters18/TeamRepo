@@ -7,11 +7,18 @@ public class TEMPARRAYS {
     private ArrayList<Object[]> arrays;
     private ArrayList<User> users = new ArrayList<User>();    //adjust amount of objects in the array here
     private Object[] Evaluations = new Object[30]; //add the evaluations array and sets its capacity
+    public Object[] Employees = new Object[30];
+    public Object[] Jobs = new Object[30];
+    public Object[] Skills = new Object[30];
     Scanner scn = new Scanner(System.in);
+
 
     public TEMPARRAYS() {
         arrays = new ArrayList<>();
         arrays.add(Evaluations); //adds evaluations array of objects to the arraylist
+        arrays.add(Jobs);
+        arrays.add(Skills);
+        arrays.add(Employees);
     }
     // Method to add an item to an array
     public void addItemToArray(int arrayIndex, Object item) {
@@ -173,6 +180,104 @@ public class TEMPARRAYS {
     {
         // takes the object at the specified index and prints it as a string
         System.out.println(Evaluations[index]);
+    }
+
+    //EMPLOYEE
+    public void addEmployee(String firstName, String lastName, String phoneNumber, String address, String email, String employeeID) {
+        int index = 0;
+        while (index < Employees.length && Employees[index] != null) {
+            index++;
+        }
+        if (index < Employees.length) {
+            Employees[index] = new Employee(firstName, lastName, phoneNumber, address, email, employeeID);
+            
+        } else {
+            System.out.println("Array is full, cannot add more objects.");
+        }
+    } 
+
+    public void deleteEmployee(int index) {
+        // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
+    if (index < 0 || index >= Employees.length) {
+        throw new IndexOutOfBoundsException("Index out of bounds");
+    }
+
+    // Shift elements to the left starting from the index to remove
+    for (int i = index; i < Employees.length - 1; i++) {
+        Employees[i] = Employees[i + 1];
+    }
+
+    // Set the last element to null to remove it
+    Employees[Employees.length - 1] = null;
+    }
+
+    public void createFakeEmployees() {
+            
+        // Create fake employees
+        addEmployee("Kendrick", "Lamar", "1234567890", "123 Main St", "klamar@gmail.com", "EMP001");
+        addEmployee("Post", "Malone", "9876543210", "456 Oak St", "pmalone@hotmail.com", "EMP002");
+        addEmployee("Peter", "Parker", "6183243454", "987 Fair st", "pparker@yahoo.com", "EMP003");
+
+        // Add more fake employees as needed
+
+        // Print confirmation message
+        System.out.println("Fake employees created successfully.");
+    }
+
+    public void addJob(String jobID, String currentTitle, String currentCompany, String currentSupervisor, String pastTitle, String pastCompany, String pastSupervisor, String yearsExperience) {
+        int index = 0;
+    while (index < Jobs.length && Jobs[index] != null) {
+        index++;
+    }
+    if (index < Employees.length) {
+        Jobs[index] = new Job(jobID, currentTitle, currentCompany, currentSupervisor, pastTitle, pastCompany, pastSupervisor, yearsExperience);
+        
+    } else {
+        System.out.println("Array is full, cannot add more objects.");
+    }
+}
+
+    public void deleteJob(int index) {
+        // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
+    if (index < 0 || index >= Jobs.length) {
+        throw new IndexOutOfBoundsException("Index out of bounds");
+    }
+
+    // Shift elements to the left starting from the index to remove
+    for (int i = index; i < Jobs.length - 1; i++) {
+        Jobs[i] = Jobs[i + 1];
+    }
+
+    // Set the last element to null to remove it
+    Jobs[Jobs.length - 1] = null;
+    }
+
+    public void addSkill(String skillID, String hardSkill, String softSkill) {
+    int index = 0;
+    while (index < Skills.length && Skills[index] != null) {
+    index++;
+    }
+    if (index < Employees.length) {
+    Skills[index] = new Skill(skillID, hardSkill, softSkill);
+
+    } else {
+    System.out.println("Array is full, cannot add more objects.");
+    }
+    }
+
+    public void deleteSkill(int index) {
+    // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
+    if (index < 0 || index >= Skills.length) {
+    throw new IndexOutOfBoundsException("Index out of bounds");
+    }
+
+    // Shift elements to the left starting from the index to remove
+    for (int i = index; i < Skills.length - 1; i++) {
+    Skills[i] = Skills[i + 1];
+    }
+
+    // Set the last element to null to remove it
+    Skills[Skills.length - 1] = null;
     }
 
 
