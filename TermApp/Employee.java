@@ -3,13 +3,28 @@ package TermApp;
 public class Employee {
     String firstName;
     String lastName;
-    int phoneNumber;
+    String phoneNumber;
     String address;
     String emailAddress;
     String employeeID;
+    
 
-    public Employee() {
-        
+    public Employee(String firstName, String lastName, String phoneNumber, String address, String emailAddress, String employeeID) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.emailAddress = emailAddress;
+        this.employeeID = employeeID;
+    }
+
+    @Override 
+    public String toString() {
+        return "Employee: " + firstName + " " + lastName +
+        "  Phone: " + phoneNumber + 
+        "  Email Address: " + emailAddress + 
+        "  Address: " + address + 
+        "  EmployeeID: " + employeeID;
     }
 
     public void setFirstName(String firstName) {
@@ -20,7 +35,7 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
         
@@ -44,7 +59,7 @@ public class Employee {
         return lastName;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -60,16 +75,7 @@ public class Employee {
         return employeeID;
     }
 
-    public void addEmployee() {
-
-    }
-
-    public void editEmployee() {
-
-    }
-
-    public void delEmployee() {
-
-    }
+    
 
 }
+
