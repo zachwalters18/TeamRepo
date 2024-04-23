@@ -188,6 +188,7 @@ public class TEMPARRAYS {
         while (index < Employees.length && Employees[index] != null) {
             index++;
         }
+        //Check if there is space in the array
         if (index < Employees.length) {
             Employees[index] = new Employee(firstName, lastName, phoneNumber, address, email, employeeID);
             
@@ -195,6 +196,28 @@ public class TEMPARRAYS {
             System.out.println("Array is full, cannot add more objects.");
         }
     } 
+
+    public void editEmployeeInfo(int index, String firstName, String lastName, String phoneNumber, String address, String emailAddress, String employeeID) {
+        if (index >= 0 && index < Employees.length) {
+            // Check if the employee at the specified index exists
+            if (Employees[index] != null) {
+                // Update employee information
+                Employee employee = (Employee) Employees[index];
+                employee.setFirstName(firstName);
+                employee.setLastName(lastName);
+                employee.setPhoneNumber(phoneNumber);
+                employee.setAddress(address);
+                employee.setEmailAddress(emailAddress);
+                employee.setEmployeeID(employeeID);
+                Employees[index] = employee; // Reassign the updated employee to the array
+                System.out.println("Employee information updated successfully.");
+            } else {
+                System.out.println("No employee found at index " + index);
+            }
+        } else {
+            System.out.println("Invalid index specified.");
+        }
+    }
 
     public void deleteEmployee(int index) {
         // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
@@ -224,11 +247,13 @@ public class TEMPARRAYS {
         System.out.println("Fake employees created successfully.");
     }
 
+    //Job
     public void addJob(String jobID, String currentTitle, String currentCompany, String currentSupervisor, String pastTitle, String pastCompany, String pastSupervisor, String yearsExperience) {
         int index = 0;
     while (index < Jobs.length && Jobs[index] != null) {
         index++;
     }
+    //Checks if there is space in the array
     if (index < Employees.length) {
         Jobs[index] = new Job(jobID, currentTitle, currentCompany, currentSupervisor, pastTitle, pastCompany, pastSupervisor, yearsExperience);
         
@@ -236,6 +261,31 @@ public class TEMPARRAYS {
         System.out.println("Array is full, cannot add more objects.");
     }
 }
+
+public void editJobInfo(int index, String jobID, String currentTitle, String currentCompany, String currentSupervisor, String pastTitle, String pastCompany, String pastSupervisor, String yearsExperience) {
+    if (index >= 0 && index < Jobs.length) {
+        // Check if the job at the specified index exists
+        if (Jobs[index] != null) {
+            // Update job information
+            Job job = (Job) Jobs[index];
+            job.setJobID(jobID);
+            job.setCurrentTitle(currentTitle);
+            job.setCurrentCompany(currentCompany);
+            job.setCurrentSupervisor(currentSupervisor);
+            job.setPastTitle(pastTitle);
+            job.setPastCompany(pastCompany);
+            job.setPastSupervisor(pastSupervisor);
+            job.setYearsExperience(yearsExperience);
+            Jobs[index] = job; // Reassign the updated job to the array
+            System.out.println("Job information updated successfully.");
+        } else {
+            System.out.println("No job found at index " + index);
+        }
+    } else {
+        System.out.println("Invalid index specified.");
+    }
+}
+
 
     public void deleteJob(int index) {
         // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
@@ -252,6 +302,7 @@ public class TEMPARRAYS {
     Jobs[Jobs.length - 1] = null;
     }
 
+    //Skill
     public void addSkill(String skillID, String hardSkill, String softSkill) {
     int index = 0;
     while (index < Skills.length && Skills[index] != null) {
@@ -264,6 +315,26 @@ public class TEMPARRAYS {
     System.out.println("Array is full, cannot add more objects.");
     }
     }
+
+    public void editSkillInfo(int index, String skillID, String hardSkill, String softSkill) {
+        if (index >= 0 && index < Skills.length) {
+            // Check if the skill at the specified index exists
+            if (Skills[index] != null) {
+                // Update skill information
+                Skill skill = (Skill) Skills[index];
+                skill.setSkillID(skillID);
+                skill.setHardSkill(hardSkill);
+                skill.setSoftSkill(softSkill);
+                Skills[index] = skill; // Reassign the updated skill to the array
+                System.out.println("Skill information updated successfully.");
+            } else {
+                System.out.println("No skill found at index " + index);
+            }
+        } else {
+            System.out.println("Invalid index specified.");
+        }
+    }
+    
 
     public void deleteSkill(int index) {
     // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
