@@ -43,6 +43,21 @@ public class Evaluation
         return this.a3;
     }
 
+    public String getq1()
+    {
+        return this.q1;
+    }
+
+    public String getq2()
+    {
+        return this.q2;
+    }
+
+    public String getq3()
+    {
+        return this.q3;
+    }
+
     public void seta1(String response)
     {
         this.a1 = response;
