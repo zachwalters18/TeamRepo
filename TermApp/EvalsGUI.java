@@ -3,6 +3,8 @@ package TermApp;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 class EvalsGUI extends JFrame 
@@ -14,65 +16,57 @@ class EvalsGUI extends JFrame
     private JButton upEval;
     private JButton delEval;
     private JButton closeEval;
-    private JLabel evalLabel;
+
+    public EvalsGUI(){
+        initalizeGUI();
+    }
 
 
-    public EvalsGUI() 
+    private void initalizeGUI() 
     {
+        frame = new JFrame(" Employee Evaluation");
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.setSize(750, 500);
-       frame.setLocationRelativeTo(null);
+       frame.setLayout(new BorderLayout());
 
-       frame = new JFrame(" Employee Evaluation");
+       //make the textpane that displays evaluations
+       evalField = new JTextPane();
+       evalField.setEditable(false);
+       evalField.setFont(new Font("Arial", Font.PLAIN, 12));
+
+       JScrollPane scrollPane = new JScrollPane(evalField);
+       frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+       inputTextArea = new JTextArea();
+       inputTextArea.setFont(new Font("Arial", Font.PLAIN, 14));
+
+       JPanel inputPanel = new JPanel(new BorderLayout());
+       inputPanel.add(inputTextArea, BorderLayout.CENTER);
+       
        upEval = new JButton("Update Evaluation");
        delEval = new JButton("Delete Evaluation");
        closeEval = new JButton("Close");
-       
-       frame.setBackground(Color.GRAY);
-       upEval.setBackground(Color.BLUE);
-       delEval.setBackground(Color.BLUE);
-       closeEval.setBackground(Color.BLUE);
-
-
-       // action listeners for all buttons
-        closeEval.addActionListener(e -> 
-        {
-            dispose();
+        // action listener for close button
+        closeEval.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
         });
+    
+       JPanel buttons = new JPanel(new FlowLayout());
+       buttons.add(upEval);
+       buttons.add(delEval);
+       buttons.add(closeEval);
 
-        
-
-        //make the textpane that displays evaluations
-        evalField = new JTextPane();
-        evalField.setEditable(false);
-        evalField.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-
-        JScrollPane scrollPane = new JScrollPane(evalField);
-        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+        frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
+        frame.getContentPane().add(buttons, BorderLayout.SOUTH);
         frame.setVisible(true);
-
-        JPanel inputPanel = new JPanel(new BorderLayout());
-        inputPanel.add(inputTextArea, BorderLayout.CENTER);
-
-        frame.add(evalField);
-        frame.add(closeEval);
-        frame.add(delEval);
-        frame.add(upEval);
-        
-        add(frame);
-        frame.setVisible(true);
-        
-
     }
 
-    public static void main(String[] args) 
-{
-    SwingUtilities.invokeLater(() -> {
-        new EvalsGUI();
-    });
-}
    
-
+   
+/*
 private void updateEvaluation()
 {
     String evalPerson = JOptionPane.showInputDialog(this, "Enter the person Evaluating:", evalPerson);
@@ -84,7 +78,7 @@ private void updateEvaluation()
 
     TEMPARRAYS tempA = new TEMPARRAYS();
     tempA.updateEvals(0, evalPerson, evalDate, Ans1, Ans2, Ans3);
-}
+} */
 
 public void displayEvaluation(Object n){
     StyledDocument eval = evalField.getStyledDocument();
@@ -101,5 +95,13 @@ public void displayEvaluation(Object n){
     }
 
     
+}
+
+
+public static void main(String[] args) 
+{
+    SwingUtilities.invokeLater(() -> {
+       EvalsGUI gui = new EvalsGUI();
+    });
 }
 }
