@@ -50,7 +50,8 @@ class EvalsGUI extends JFrame
         closeEval.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(closeEval);
+                topFrame.dispose();
             }
         });
     
