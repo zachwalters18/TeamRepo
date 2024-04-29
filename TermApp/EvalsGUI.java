@@ -63,11 +63,9 @@ class EvalsGUI extends JFrame
         frame.getContentPane().add(buttons, BorderLayout.SOUTH);
         frame.setVisible(true);
     }
-
-   
    
 /*
-private void updateEvaluation()
+private void updateEvaluation(Object n)
 {
     String evalPerson = n.getEvaluator();
     String 
