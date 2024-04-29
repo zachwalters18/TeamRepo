@@ -76,7 +76,7 @@ public class Evaluation
     @Override
     public String toString()
     {
-        return (evaluator + "\n " + evaluationDate + "\n " + q1 + a1 + "\n " + q2 + a2 + "\n" + q3 + a3);
+        return (this.evaluator + "\n " + this.evaluationDate + "\n " + this.q1 + this.a1 + "\n " + this.q2 + this.a2 + "\n" + this.q3 + this.a3);
     }
     
 
