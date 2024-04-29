@@ -73,9 +73,12 @@ class EvalsGUI extends JFrame
 }
    
 
-private void updateEvaluation()
+private void updateEvaluation(Object n)
 {
-    String evalPerson = JOptionPane.showInputDialog(this, "Enter the person Evaluating:", evalPerson);
+    String evalPerson = n.getEvaluator();
+    String 
+
+    evalPerson = JOptionPane.showInputDialog(this, "Enter the person Evaluating:", evalPerson);
     String evalDate = JOptionPane.showInputDialog(this, "Enter the date of the Evaluation:", evalDate);
     String Ans1 = JOptionPane.showInputDialog(this,"Enter the answer to Question 1:", Ans1);
     String Ans2 = JOptionPane.showInputDialog(this,"Enter the answer to Question 2:", Ans2);

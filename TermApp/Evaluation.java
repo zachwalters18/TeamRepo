@@ -28,6 +28,16 @@ public class Evaluation
 
     }
 
+    public String getEvaluator()
+    {
+        return this.evaluator;
+    }
+
+    public String getevalDate()
+    {
+        return this.evaluationDate;
+    }
+
     public String geta1()
     {
         return this.a1;
@@ -56,6 +66,16 @@ public class Evaluation
     public String getq3()
     {
         return this.q3;
+    }
+
+    public void setevaluator(String response)
+    {
+        this.evaluator = response;
+    }
+
+    public void setevalDate(String response)
+    {
+        this.evaluationDate = response;
     }
 
     public void seta1(String response)
