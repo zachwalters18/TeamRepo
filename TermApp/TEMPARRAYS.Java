@@ -8,7 +8,7 @@ public class TEMPARRAYS {
     Scanner scnr = new Scanner(System.in);
     //Arrays
     private ArrayList<Object[]> arrays;
-    private Object[] Evaluations = new Object[30]; //add the evaluations array and sets its capacity
+    public Object[] Evaluations = new Object[30]; //add the evaluations array and sets its capacity
     public Object[] Employees = new Object[30];
     public Object[] Jobs = new Object[30];
     public Object[] Skills = new Object[30];
@@ -340,10 +340,16 @@ public class TEMPARRAYS {
         }
     }
 
-    public void displayEvals(int index)
+    public String displayEvals(int index)
     {
         // takes the object at the specified index and prints it as a string
-        System.out.println(Evaluations[index]);
+        return Evaluations[index].toString();
+    }
+
+    public void makeFakeEvals()
+    {
+        addEvals("Robert Kyle", "10/24/2016", "horrible","2", "notes would go here");
+        addEvals("Stacy Clarke", "3/24/1986", "decent", "6", "need a watercoolr closer to the south sector");
     }
 
     //********EMPLOYEE************
