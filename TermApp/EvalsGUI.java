@@ -51,7 +51,7 @@ class EvalsGUI extends JFrame
        upEval.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            updateEvaluation(temp.Evaluations[0]); // Call your update method with the selected object
+            updateEvaluation(temp.Evaluations[evalIndex]); // Call your update method with the selected object
         }
     });
 
