@@ -17,6 +17,8 @@ class EvalsGUI extends JFrame
     private JButton closeEval;
     private JButton zoomIn;
     private JButton zoomOut;
+    private int evalIndex;
+    private JButton viewEval;
 
 
     public EvalsGUI(){
@@ -38,7 +40,7 @@ class EvalsGUI extends JFrame
        evalField = new JTextPane();
        evalField.setEditable(false);
        evalField.setText(temp.displayEvals(0));
-       evalField.setFont(new Font("Arial", Font.PLAIN, 12));
+       evalField.setFont(new Font("Arial", Font.PLAIN, 18));
        evalField.setPreferredSize(new Dimension(1440, 1080));
 
        JScrollPane scrollPane = new JScrollPane(evalField);
@@ -57,6 +59,12 @@ class EvalsGUI extends JFrame
     });
 
        delEval = new JButton("Delete Evaluation");
+       delEval.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            deleteEvaluations(evalIndex);
+        }
+    });
        closeEval = new JButton("Close");
         // action listener for close button
         closeEval.addActionListener(new ActionListener() {
@@ -81,8 +89,18 @@ class EvalsGUI extends JFrame
                 decreaseFontSize();
             }
         });
+
+        viewEval = new JButton("View Another Evaluation");
+        viewEval.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                getevalIndex();
+                evalField.setText(temp.displayEvals(evalIndex));
+            }
+        });
     
        JPanel buttons = new JPanel(new FlowLayout());
+       buttons.add(viewEval);
        buttons.add(upEval);
        buttons.add(delEval);
        buttons.add(closeEval);
@@ -140,14 +158,37 @@ private void updateEvaluation(Object n)
     }
 }
 
+private void deleteEvaluations(int index)
+{
+    TEMPARRAYS temp = new TEMPARRAYS();
+    temp.deleteEval(index);
+    evalField.setText("There is no evaluation for this employee");
+}
+
 public void displayEvalGUI()
 {
     TEMPARRAYS temp = new TEMPARRAYS();
-    String result = temp.displayEvals(0);
+    String result = temp.displayEvals(evalIndex);
     evalField.setText(result);
 
 }
 
+public void getevalIndex() 
+{
+    String userInput = JOptionPane.showInputDialog(null, "Enter the number of the employee you want to view");
+    int newIndex = 0; // Default value if parsing fails or user cancels
+    try {
+        newIndex = Integer.parseInt(userInput);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
+         getevalIndex();
+    } catch (NullPointerException e) {
+       
+        JOptionPane.showMessageDialog(null, "Canceled.");
+        
+    }
+    evalIndex = newIndex-1;
+}
 
 public static void main(String[] args) 
 {
