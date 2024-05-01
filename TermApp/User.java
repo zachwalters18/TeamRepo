@@ -8,7 +8,7 @@ public class User extends TEMPARRAYS{
     private int userID;
     //username needs to be public to be validated in validateUsername()
     public String username;
-    private String password;
+    protected String password;
     //used in TEMPARRAYS
     protected Boolean loggedIn = false;
     //default constructors
@@ -44,18 +44,22 @@ public class User extends TEMPARRAYS{
     //locates User
     protected User findUser(ArrayList<User> users, int givenUserID) {
         boolean noUserfound = true;
-        User selectedUser = new User();
+        User selectedUser = new User("temp", "temp", 0);
         while (noUserfound) {
             //loop checks any user with same ID
+            if (givenUserID == 0) {
+                System.out.println("Test user identified!");
+                break;
+            }
             for (User user : users) {
-                if (user.getUserID() == givenUserID) {
+                if ((user.getUserID() == givenUserID)) {
                     noUserfound = false;
                     selectedUser = user;
                     break;
                 }
             }
             //if user is not found, re-enter information.
-            if (noUserfound) {
+            if (noUserfound && givenUserID != 0) {
                 System.out.println("INCORRECT INFORMATION");
                 System.out.println("Re-enter User ID: ");
                 givenUserID = scnr.nextInt();

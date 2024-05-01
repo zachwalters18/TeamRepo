@@ -101,38 +101,54 @@ public class TEMPARRAYS {
     private void setUsers(ArrayList<User> users) {
         this.users = users;
     }
+    //sends username of the loggedInUser
+    public String getLoggedInUsername() {
+        return loggedInUser.getUsername();
+    }
+    //sends password of the loggedInUser
+    public String getLoggedInPassword() {
+        return loggedInUser.getPassword();
+    }
+    //sends userID of loggedInUser
+    public int getLoggedInID() {
+        return loggedInUser.getUserID();
+    }
     //sets up a fake user in index 0 to check for loggin to be false
     protected void setFakeLog() {
         loggedInUser = new User("temp", "temp", 0);
     }
     //adds a new user to the "users" array
-    protected void addUser(String givenUsername, String givenPassword) {  
+    public boolean addUser(String givenUsername, String givenPassword) {  
         ArrayList<User> updatedUsers = getUsers();
-        givenUsername = validateUsername(givenUsername);
-        User newUser = new User(givenUsername, givenPassword, this.userIndex);
-        increaseUserIndex();
-        //user is added to "users" array list
-        updatedUsers.add(newUser);
-        setUsers(updatedUsers);
+        boolean unique = validateUsername(givenUsername);
+        if (unique) {
+            User newUser = new User(givenUsername, givenPassword, this.userIndex);
+            increaseUserIndex();
+            //user is added to "users" array list
+            updatedUsers.add(newUser);
+            setUsers(updatedUsers);
+        }
+        return unique;
     }
     //username and password are able to be edited
-    protected void updateUser(int givenUserID) {
+    public boolean updateUser(int givenUserID, String newUsername, String newPassword) {
         //findUser requires a User to be created to call the method (findUser)
         User selectedUser = new User();
         ArrayList<User> updatedUsers = getUsers();
         selectedUser = selectedUser.findUser(updatedUsers, givenUserID);
         updatedUsers.remove(selectedUser);          //removes old user
-        System.out.println("Input new username:");//changes username and password
-        String newUsername = scnr.nextLine();
-        newUsername = validateUsername(newUsername);
-        System.out.println("Input new password:");
-        String newPassword = scnr.nextLine();
-        selectedUser.setUsername(newUsername);      //update username
-        selectedUser.setPassword(newPassword);      //update password
-        updatedUsers.add(selectedUser);             //adds updated user
-        setUsers(updatedUsers);
+        //checks if the username is unique to prevent two users having the same username
+        boolean unique = validateUsername(newUsername);
+        if (unique) {
+            selectedUser.setUsername(newUsername);      //update username
+            selectedUser.setPassword(newPassword);      //update password
+            updatedUsers.add(selectedUser);             //adds updated user
+            setUsers(updatedUsers);
+        }
+        return unique;
     }
     //deletes selected user
+    //this method is not available for users
     protected void deleteUser(int givenUserID) {
         User selectedUser = new User();
         ArrayList<User> updatedUsers = getUsers();
@@ -142,39 +158,23 @@ public class TEMPARRAYS {
         setUsers(updatedUsers);
     }
     //displays all users in "users" array by their ID
-    protected void displayAllUsers() {
+    public void displayAllUsers() {
         for (User user : users) {
             System.out.println(user.getUserID());
         }
     }
     //logging in a User
-    protected void logInUser(String givenUsername, String givenPassword) {
+    public boolean logInUser(String givenUsername, String givenPassword) {
         boolean found = false;
-        //checks to see if loggedInUser is loggedIn to prevent more than one user from being loggedIn
-        if (loggedInUser.loggedIn) {
-            System.out.println("A User is already logged in.");
-        } else {
-            //validates User when given username and password and searches for a match
-            while (!found) {
-                for (User user : users) {
-                    if (user.getUsername().equals(givenUsername) && user.getPassword().equals(givenPassword)) {
-                        user.logIn();
-                        loggedInUser = user;
-                        found = true;
-                    }
-                }
-                if (found) {
-                    System.out.println("Logging user in...");
-                    break;
-                } else {
-                    System.out.println("INCORRECT INFORMATION");
-                    System.out.println("Re-enter username:");
-                    givenUsername = scnr.nextLine();
-                    System.out.println("Re-enter password:");
-                    givenPassword = scnr.nextLine();
-                }
+        //validates User when given username and password and searches for a match
+        for (User user : users) {
+            if (user.getUsername().equals(givenUsername) && user.getPassword().equals(givenPassword)) {
+                user.logIn();
+                loggedInUser = user;
+                found = true;
             }
         }
+        return found;
     }
     //logs user out and resets loggedInUser to logout as well
     protected void logOutUser() {
@@ -182,33 +182,20 @@ public class TEMPARRAYS {
             if (user == loggedInUser) {
                 user.logOut();
                 loggedInUser.logOut();
-                System.out.println("Logging out user...");
             }
         }
     }
     //validates if username is unique to avoid two users with the same username
-    protected String validateUsername(String givenUsername) {
+    protected boolean validateUsername(String givenUsername) {
         ArrayList<User> users = getUsers();
-        boolean unique = false;
-        int counter = 0;
-        //while not unique execute code to find an unique username
-        while (!unique) {
-            counter = 0;
-            for (User user : users) {
-                if (user.username.equals(givenUsername)) {
-                    //if username is not unique get a new username
-                    System.out.println("Username is already in use...\nInput a different username:");
-                    givenUsername = scnr.nextLine();
-                    counter = 1;
-                    break;
-                }
-            }
-            //checks to see if unique
-            if (counter == 0) {
-                unique = true;
+        boolean unique = true;
+        //if there is the same username unique is set to false
+        for (User user : users) {
+            if (user.username.equals(givenUsername)) {
+                unique = false;
             }
         }
-        return givenUsername;       //returns unique username
+        return unique;
     }
     //creates fake users and adds them to the users array
     protected void createFakeUsers() {
