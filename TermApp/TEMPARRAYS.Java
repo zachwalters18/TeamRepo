@@ -342,8 +342,17 @@ public class TEMPARRAYS {
 
     public String displayEvals(int index)
     {
+        // Check if the index is within bounds
+        if (index < 0 || index >= Evaluations.length) {
+            return "Error: Index is out of bounds.";
+        }
+
+        // Check if the object at the specified index is null
+        if (Evaluations[index] == null) {
+            return "Error: Object at index " + index + " is null.";
+        }
         // takes the object at the specified index and prints it as a string
-        return Evaluations[index].toString();
+            return Evaluations[index].toString();
     }
 
     public void makeFakeEvals()
