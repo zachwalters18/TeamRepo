@@ -46,9 +46,6 @@ class EvalsGUI extends JFrame
        JScrollPane scrollPane = new JScrollPane(evalField);
        frame.add(scrollPane, BorderLayout.CENTER);
 
-        
-       JPanel inputPanel = new JPanel(new BorderLayout());
-       inputPanel.add(evalField, BorderLayout.CENTER);
        
        upEval = new JButton("Update Evaluation");
        upEval.addActionListener(new ActionListener() {
@@ -109,8 +106,6 @@ class EvalsGUI extends JFrame
 
         frame.setBackground(Color.GRAY);
         evalField.setBackground(Color.GRAY);
-        inputPanel.setBackground(Color.GRAY);
-        frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
         frame.getContentPane().add(buttons, BorderLayout.SOUTH);
         frame.pack();
         frame.setVisible(true);
