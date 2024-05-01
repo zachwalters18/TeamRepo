@@ -19,6 +19,7 @@ class EvalsGUI extends JFrame
     private JButton zoomOut;
     private int evalIndex;
     private JButton viewEval;
+    private JButton addEval;
 
 
     public EvalsGUI(){
@@ -95,16 +96,24 @@ class EvalsGUI extends JFrame
                 evalField.setText(temp.displayEvals(evalIndex));
             }
         });
+
+        addEval = new JButton("Add Evaluation");
+        addEval.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                addEvals();
+            }
+        });
     
        JPanel buttons = new JPanel(new FlowLayout());
        buttons.add(viewEval);
+       buttons.add(addEval);
        buttons.add(upEval);
        buttons.add(delEval);
        buttons.add(closeEval);
        buttons.add(zoomIn);
        buttons.add(zoomOut);
 
-        frame.setBackground(Color.GRAY);
         evalField.setBackground(Color.GRAY);
         frame.getContentPane().add(buttons, BorderLayout.SOUTH);
         frame.pack();
@@ -166,6 +175,23 @@ public void displayEvalGUI()
     String result = temp.displayEvals(evalIndex);
     evalField.setText(result);
 
+}
+
+private void addEvals() 
+{
+    String evalp = JOptionPane.showInputDialog("Enter the name of the Evaulator:");
+    String time = JOptionPane.showInputDialog("Enter date of the Evaluation:");
+    String ans1 = JOptionPane.showInputDialog("Enter the answer to Question 1:");
+    String ans2 = JOptionPane.showInputDialog("Enter the answer to Question 2:");
+    String ans3 = JOptionPane.showInputDialog("Enter the answer to Question 3:");
+
+    if (evalp != null && time != null && ans1 != null && ans2 != null && ans3 != null) {
+        TEMPARRAYS temp = new TEMPARRAYS();
+        temp.addEvals(evalp, time, ans1, ans2, ans3);
+        JOptionPane.showMessageDialog(null, "Evaluation added successfully.");
+    } else {
+        JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+    }
 }
 
 public void getevalIndex() 
