@@ -210,11 +210,12 @@ public void getevalIndex()
     }
     evalIndex = newIndex-1;
 }
-
+/*
 public static void main(String[] args) 
 {
     SwingUtilities.invokeLater(() -> {
        EvalsGUI gui = new EvalsGUI();
     });
 }
+*/
 }

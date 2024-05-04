@@ -82,6 +82,7 @@ public class MainGUI extends JFrame{
         employeeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //FIXME calls employee GUI
+                //System.out.println("Employee button!");
                 dispose();
                 EmployeeGUI employeeGUI = new EmployeeGUI(tmp);
             }
@@ -129,7 +130,9 @@ public class MainGUI extends JFrame{
         JMenuItem logOutMenu = new JMenuItem("Log Out");
         logOutMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("LOG OUT");
+                tmp.logOutUser();
+                dispose();
+                LoginGUI loginGUI = new LoginGUI(tmp);
             }
         });
         //adding in order
@@ -139,5 +142,4 @@ public class MainGUI extends JFrame{
         menuBar.add(menu);
         return menuBar;
     }
-    //actionlister for all menu items
 }

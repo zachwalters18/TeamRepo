@@ -1,10 +1,8 @@
 package TermApp;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class User extends TEMPARRAYS{
-    Scanner scnr = new Scanner(System.in);
     private int userID;
     //username needs to be public to be validated in validateUsername()
     public String username;
@@ -61,8 +59,6 @@ public class User extends TEMPARRAYS{
             //if user is not found, re-enter information.
             if (noUserfound && givenUserID != 0) {
                 System.out.println("INCORRECT INFORMATION");
-                System.out.println("Re-enter User ID: ");
-                givenUserID = scnr.nextInt();
             }
         }
         return selectedUser;

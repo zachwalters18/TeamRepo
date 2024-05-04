@@ -1,15 +1,21 @@
-package TermApp;
+package TermApp.GUI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import TermApp.Employee;
+import TermApp.TEMPARRAYS;
+
 import java.awt.*;
 
 
+
 public class EmployeeGUI extends JFrame {
-        private JTable employeeTable;
+    private JTable employeeTable;
+    private TEMPARRAYS tempArrays;
 
-
-     public EmployeeGUI() {
+     public EmployeeGUI(TEMPARRAYS tempArrays) {
+        this.tempArrays = tempArrays;
         setTitle("Employee Information");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
@@ -44,9 +50,14 @@ public class EmployeeGUI extends JFrame {
         deleteButton.addActionListener(e -> deleteSelectedEmployee());
         JButton updateButton = new JButton("Update Employee");
         updateButton.addActionListener(e -> updateSelectedEmployee());
+        //adding a main button to return to the main menu
+        JButton mainButton = new JButton("Return to Main");
+        mainButton.addActionListener(e -> returnToMain());
+
         buttonPanel.add(addButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(updateButton);
+        buttonPanel.add(mainButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
         // Populate the table with fake employees
@@ -58,7 +69,7 @@ public class EmployeeGUI extends JFrame {
 
     private void displayEmployees() {
         // Access the TEMPARRAYS instance to retrieve the employees
-        TEMPARRAYS tempArrays = new TEMPARRAYS();
+        //TEMPARRAYS tempArrays = new TEMPARRAYS();
 
         // Populate the Employees array (You may have already done this elsewhere in your application)
         tempArrays.createFakeEmployees();
@@ -93,7 +104,7 @@ public class EmployeeGUI extends JFrame {
         Employee newEmployee = new Employee(firstName, lastName, phoneNumber, address, emailAddress, employeeID);
     
         // Access the TEMPARRAYS instance to add the new employee to the array
-        TEMPARRAYS tempArrays = new TEMPARRAYS();
+        //TEMPARRAYS tempArrays = new TEMPARRAYS();
         tempArrays.addEmployee(firstName, lastName, phoneNumber, address, emailAddress, employeeID);
     
         // Add the new employee to the table
@@ -156,6 +167,11 @@ public class EmployeeGUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Please select an employee to update.",
                     "Update Employee", JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+    private void returnToMain() {
+        dispose();
+        MainGUI mainGUI = new MainGUI(tempArrays);
     }
 
     public static void main(String[] args) {

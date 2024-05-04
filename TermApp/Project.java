@@ -1,26 +1,25 @@
 package TermApp;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Project extends TEMPARRAYS {
-    Scanner scnr = new Scanner(System.in);
-    private int projectID;
+    public int projectID;
     private String projectName;
     private String startDate;
     private String endDate;
     private String status;
+    private String[] projectTeam;
     //default constructor
     public Project() {
 
     }
 
-    public Project(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus, int givenID) {
+    public Project(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus, String[] givenProjectTeam,int givenID) {
         setProjectID(givenID);
         setProjectName(givenProjectName);
         setStartDate(givenStartDate);
         setEndDate(givenEndDate);
         setStatus(givenStatus);
+        setProjectTeam(givenProjectTeam);
     }
     //setters
     protected void setProjectID(int projectID) {
@@ -38,6 +37,9 @@ public class Project extends TEMPARRAYS {
     protected void setStatus(String status) {
         this.status = status;
     }
+    protected void setProjectTeam(String[] projectTeam) {
+        this.projectTeam = projectTeam;
+    }
     //getters
     protected int getProjectID() {
         return projectID;
@@ -53,6 +55,13 @@ public class Project extends TEMPARRAYS {
     }
     protected String getStatus() {
         return status;
+    }
+    protected String[] getProjectTeam() {
+        return projectTeam;
+    }
+    protected String getStringProjectTeam() {
+        String stringProjectTeam = String.join(",", getProjectTeam());
+        return stringProjectTeam;
     }
     //finds selected project
     protected Project findProject(ArrayList<Project> projects, int givenProjectID) {
@@ -70,8 +79,6 @@ public class Project extends TEMPARRAYS {
             //if project is not found, re-enter information or quit searching
             if (noProjectfound) {
                 System.out.println("INCORRECT INFORMATION");
-                System.out.println("Re-enter Product ID: ");
-                givenProjectID = scnr.nextInt();
             }
         }
         return selectedProject;

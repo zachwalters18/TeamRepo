@@ -1,5 +1,4 @@
 package TermApp;
-
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -177,7 +176,7 @@ public class TEMPARRAYS {
         return found;
     }
     //logs user out and resets loggedInUser to logout as well
-    protected void logOutUser() {
+    public void logOutUser() {
         for (User user : users) {
             if (user == loggedInUser) {
                 user.logOut();
@@ -222,39 +221,48 @@ public class TEMPARRAYS {
     private void setProjects(ArrayList<Project> projects) {
         this.projects = projects;
     }
+    //returns number of projects
+    protected int getNumberOfProjects() {
+        return getProjects().size();
+    }
     //adds a new project to the "projects" array
-    protected void addProject(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus) {  
+    public boolean addProject(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus, String[] projectTeam) {  
         ArrayList<Project> updatedProjects = getProjects();
-        //constructor has much data passed to it
-        Project newProject = new Project(givenProjectName, givenStartDate, givenEndDate, givenStatus, this.projectIndex);
-        increaseProjectIndex();
-        updatedProjects.add(newProject);
-        setProjects(updatedProjects);
+        boolean noInput = false;
+        if (givenProjectName.isEmpty()) {
+            noInput = true;
+        } else {
+            //constructor has much data passed to it
+            Project newProject = new Project(givenProjectName, givenStartDate, givenEndDate, givenStatus, projectTeam, this.projectIndex);
+            increaseProjectIndex();
+            updatedProjects.add(newProject);
+            setProjects(updatedProjects);
+        }
+        return noInput;
     }
     //selected project can be edited
-    protected void updateProject(int givenProjectID) {
-        //findProject requires a Project to be created to call the method (findProject)
+    public boolean updateProject(int givenProjectID, String newProjectName, String newStartDate, String newEndDate, String newStatus, String[] newProjectTeam) {
+        boolean noInput = false;
+        if (newProjectName.isEmpty()) {
+            noInput = true;
+        } else {
         Project selectedProject = new Project();
         ArrayList<Project> updatedProjects = getProjects();
+        //findProject requires a Project to be created to call the method (findProject)
         selectedProject = selectedProject.findProject(updatedProjects, givenProjectID);
         updatedProjects.remove(selectedProject);        //removes old user
-        System.out.println("Input new project name:");//gets input to replace old data
-        String newProjectName = scnr.nextLine();
-        System.out.println("Input new start date:");
-        String newStartDate = scnr.nextLine();
-        System.out.println("Input new end date:");
-        String newEndDate = scnr.nextLine();
-        System.out.println("Input new status:");
-        String newStatus = scnr.nextLine();
         selectedProject.setProjectName(newProjectName); //update project name
         selectedProject.setStartDate(newStartDate);     //update start date
         selectedProject.setEndDate(newEndDate);         //update end date
         selectedProject.setStatus(newStatus);           //update status
+        selectedProject.setProjectTeam(newProjectTeam);
         updatedProjects.add(selectedProject);           //adds updated project
         setProjects(updatedProjects);
+        }
+        return noInput;
     }
     //deletes selected project
-    protected void deleteProject(int givenProjectID) {
+    public void deleteProject(int givenProjectID) {
         Project selectedProject = new Project();
         ArrayList<Project> updatedProjects = getProjects();
         //I need a new Project to call the findProject method
@@ -263,18 +271,59 @@ public class TEMPARRAYS {
         updatedProjects.remove(selectedProject);
         setProjects(updatedProjects);
     }
-    //displays all projects in "projects" array by their ID
-    protected void displayAllProjects() {
+    //validate project
+    public boolean validateProject(int id) {
+        ArrayList<Project> projects = getProjects();
+        boolean found = false;
+        //if there is the same project id found is set to false
         for (Project project : projects) {
-            System.out.println(project.getProjectID());
+            if (project.projectID == id) {
+                found = true;
+            }
         }
+        return found;
+    }
+    //displays all projects in "projects" array by their ID
+    public ArrayList<String[]> displayAllProjects() {
+        ArrayList<String[]> projectsData = new ArrayList<>();
+        String id;
+        String name;
+        
+        for (Project project : projects) {
+            id = Integer.toString(project.getProjectID());
+            name = project.getProjectName();
+            String[] projectData = {id, name};
+            projectsData.add(projectData);
+        }
+
+        return projectsData;
+    }
+    //displays one Project from the arraylist "projects"
+    public String[] displayProject(int givenProjectID) {
+        String[] data = new String[6];
+        //first locate the project in order to display
+        Project selectedProject = new Project();
+        ArrayList<Project> updatedProjects = getProjects();
+        selectedProject = selectedProject.findProject(updatedProjects, givenProjectID);
+        data[0] = Integer.toString(selectedProject.getProjectID());
+        data[1] = selectedProject.getProjectName();
+        data[2] = selectedProject.getStartDate();
+        data[3] = selectedProject.getEndDate();
+        data[4] = selectedProject.getStatus();
+        data[5] = selectedProject.getStringProjectTeam();
+        return data;
+    }
+    //adds the team attribute specifically a selected project
+    public void addProjectTeam(int projectID, String[] projectTeam) {
+
     }
     //creates a fake project and adds it to the "projects" array
     protected void createFakeProjects() {
         ArrayList<Project> updatedProjects = getProjects();
         //constructor is passed all required data
+        String[] team = {"Jacob Johnson", "Jonny Cool", "Baby Boy"};
         Project fake1 = new Project("Project 103", "01/01/04", "02/02/05",
-        "Successful for the most part, but the project needs a better name.", this.projectIndex);
+        "Successful for the most part, but the project needs a better name.", team, this.projectIndex);
         increaseProjectIndex();
         updatedProjects.add(fake1);        //adds fake project to array
         setProjects(updatedProjects);
@@ -412,8 +461,29 @@ public class TEMPARRAYS {
         // Print confirmation message
         System.out.println("Fake employees created successfully.");
     }
-  
-//Job
+    //used in project GUI to select employees for a project
+    public String[] currentEmployees() {
+        Object[] array = arrays.get(3);
+        int count = 0;
+        String name;
+        for (Object item : array) {
+            if (item != null) {
+                count++;
+            }
+        }
+        String[] currentEmployees = new String[count];
+        count = 0;
+        for (Object item : array) {
+            Employee employee = (Employee)item;
+            if (employee != null) {
+                name = (employee.getFirstName()) + " " +(employee.getLastName());
+                currentEmployees[count] = name;
+                count++;
+            }
+        }
+        return currentEmployees;
+    }
+    //Job
     public void addJob(String jobID, String currentTitle, String currentCompany, String currentSupervisor, String pastTitle, String pastCompany, String pastSupervisor, String yearsExperience) {
         int index = 0;
     while (index < Jobs.length && Jobs[index] != null) {

@@ -15,9 +15,8 @@ public class Main{
         tmp.createFakeUsers();
         tmp.setFakeLog();
         tmp.createFakeProjects();
+        tmp.createFakeEmployees();
 
         LoginGUI loginGUI = new LoginGUI(tmp);
-        //ProfileGUI profileGUI = new ProfileGUI(tmp);
-        //EmployeeGUI employeeGUI = new EmployeeGUI(tmp);
     }
 }
