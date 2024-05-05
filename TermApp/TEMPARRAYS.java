@@ -226,14 +226,16 @@ public class TEMPARRAYS {
         return getProjects().size();
     }
     //adds a new project to the "projects" array
-    public boolean addProject(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus, String[] projectTeam) {  
+    public boolean addProject(String givenProjectName, String givenStartDate, String givenEndDate,
+    String givenStatus, String[] projectTeam) {  
         ArrayList<Project> updatedProjects = getProjects();
         boolean noInput = false;
         if (givenProjectName.isEmpty()) {
             noInput = true;
         } else {
             //constructor has much data passed to it
-            Project newProject = new Project(givenProjectName, givenStartDate, givenEndDate, givenStatus, projectTeam, this.projectIndex);
+            Project newProject = new Project(givenProjectName, givenStartDate, givenEndDate,
+            givenStatus, projectTeam, this.projectIndex);
             increaseProjectIndex();
             updatedProjects.add(newProject);
             setProjects(updatedProjects);
@@ -241,7 +243,8 @@ public class TEMPARRAYS {
         return noInput;
     }
     //selected project can be edited
-    public boolean updateProject(int givenProjectID, String newProjectName, String newStartDate, String newEndDate, String newStatus, String[] newProjectTeam) {
+    public boolean updateProject(int givenProjectID, String newProjectName, String newStartDate, String newEndDate,
+    String newStatus, String[] newProjectTeam) {
         boolean noInput = false;
         if (newProjectName.isEmpty()) {
             noInput = true;
@@ -313,10 +316,6 @@ public class TEMPARRAYS {
         data[5] = selectedProject.getStringProjectTeam();
         return data;
     }
-    //adds the team attribute specifically a selected project
-    public void addProjectTeam(int projectID, String[] projectTeam) {
-
-    }
     //creates a fake project and adds it to the "projects" array
     protected void createFakeProjects() {
         ArrayList<Project> updatedProjects = getProjects();
@@ -368,7 +367,6 @@ public class TEMPARRAYS {
         // Check if there is space in the array
         if (index < Evaluations.length)
         {
-
                 // takes in arguments and passes it to the Evaluation constructor
             Evaluations[index] = new Evaluation(evalp, time, ans1, ans2, ans3);
         } else {
@@ -399,21 +397,20 @@ public class TEMPARRAYS {
         addEvals("Elijah Morales", "7/9/1995", "great", "7", "this is an okay place to work");
     }
 
-    // ********EMPLOYEE*********
-    public void addEmployee(String firstName, String lastName, String phoneNumber, String address, String email,
-            String employeeID) {
+     //********EMPLOYEE************
+    public void addEmployee(String firstName, String lastName, String phoneNumber, String address, String email, String employeeID) {
         int index = 0;
         while (index < Employees.length && Employees[index] != null) {
             index++;
         }
-        // Check if there is space in the array
+        //Check if there is space in the array
         if (index < Employees.length) {
             Employees[index] = new Employee(firstName, lastName, phoneNumber, address, email, employeeID);
-
+            
         } else {
             System.out.println("Array is full, cannot add more objects.");
         }
-    }
+    } 
 
     public void editEmployeeInfo(int index, String firstName, String lastName, String phoneNumber, String address,
             String emailAddress, String employeeID) {
@@ -465,7 +462,28 @@ public class TEMPARRAYS {
         // Print confirmation message
         System.out.println("Fake employees created successfully.");
     }
-
+    //used in project GUI to select employees for a project
+    public String[] currentEmployees() {
+        Object[] array = arrays.get(3);
+        int count = 0;
+        String name;
+        for (Object item : array) {
+            if (item != null) {
+                count++;
+            }
+        }
+        String[] currentEmployees = new String[count];
+        count = 0;
+        for (Object item : array) {
+            Employee employee = (Employee)item;
+            if (employee != null) {
+                name = (employee.getFirstName()) + " " +(employee.getLastName());
+                currentEmployees[count] = name;
+                count++;
+            }
+        }
+        return currentEmployees;
+    }
     // ********Job********
     // method to add a new job
     public void addJob(String jobID, String currentTitle, String currentCompany, String currentSupervisor,

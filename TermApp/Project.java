@@ -13,7 +13,8 @@ public class Project extends TEMPARRAYS {
 
     }
 
-    public Project(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus, String[] givenProjectTeam,int givenID) {
+    public Project(String givenProjectName, String givenStartDate, String givenEndDate, String givenStatus,
+    String[] givenProjectTeam,int givenID) {
         setProjectID(givenID);
         setProjectName(givenProjectName);
         setStartDate(givenStartDate);
