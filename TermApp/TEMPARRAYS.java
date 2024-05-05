@@ -391,28 +391,32 @@ public class TEMPARRAYS {
             return Evaluations[index].toString();
     }
 
-    public void makeFakeEvals()
-    {
-        addEvals("Robert Kyle", "10/24/2016", "horrible","2", "notes would go here");
-        addEvals("Stacy Clarke", "3/24/1986", "decent", "6", "need a watercoolr closer to the south sector");
+    public void makeFakeEvals() {
+        addEvals("Kendrick Lamar", "10/24/2016", "horrible", "2", "notes would go here");
+        addEvals("Post Malone", "3/24/1986", "decent", "6", "need a watercoolr closer to the south sector");
+        addEvals("Peter Parker", "4/30/2023", "awesome", "9", "this is an awesome place");
+        addEvals("Miles Wood", "9/18/2020", "poor", "1", "this is a bad place");
+        addEvals("Elijah Morales", "7/9/1995", "great", "7", "this is an okay place to work");
     }
 
-    //********EMPLOYEE************
-    public void addEmployee(String firstName, String lastName, String phoneNumber, String address, String email, String employeeID) {
+    // ********EMPLOYEE*********
+    public void addEmployee(String firstName, String lastName, String phoneNumber, String address, String email,
+            String employeeID) {
         int index = 0;
         while (index < Employees.length && Employees[index] != null) {
             index++;
         }
-        //Check if there is space in the array
+        // Check if there is space in the array
         if (index < Employees.length) {
             Employees[index] = new Employee(firstName, lastName, phoneNumber, address, email, employeeID);
-            
+
         } else {
             System.out.println("Array is full, cannot add more objects.");
         }
-    } 
+    }
 
-    public void editEmployeeInfo(int index, String firstName, String lastName, String phoneNumber, String address, String emailAddress, String employeeID) {
+    public void editEmployeeInfo(int index, String firstName, String lastName, String phoneNumber, String address,
+            String emailAddress, String employeeID) {
         if (index >= 0 && index < Employees.length) {
             // Check if the employee at the specified index exists
             if (Employees[index] != null) {
@@ -435,123 +439,123 @@ public class TEMPARRAYS {
     }
 
     public void deleteEmployee(int index) {
-        // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
-    if (index < 0 || index >= Employees.length) {
-        throw new IndexOutOfBoundsException("Index out of bounds");
-    }
+        // checks the index to make sure it isnt out of bounds and throws an exceptionn
+        // if it is
+        if (index < 0 || index >= Employees.length) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
 
-    // Shift elements to the left starting from the index to remove
-    for (int i = index; i < Employees.length - 1; i++) {
-        Employees[i] = Employees[i + 1];
-    }
+        // Shift elements to the left starting from the index to remove
+        for (int i = index; i < Employees.length - 1; i++) {
+            Employees[i] = Employees[i + 1];
+        }
 
-    // Set the last element to null to remove it
-    Employees[Employees.length - 1] = null;
+        // Set the last element to null to remove it
+        Employees[Employees.length - 1] = null;
     }
 
     public void createFakeEmployees() {
-            
         // Create fake employees
         addEmployee("Kendrick", "Lamar", "1234567890", "123 Main St", "klamar@gmail.com", "EMP001");
         addEmployee("Post", "Malone", "9876543210", "456 Oak St", "pmalone@hotmail.com", "EMP002");
-        addEmployee("Peter", "Parker", "6183243454", "987 Fair st", "pparker@yahoo.com", "EMP003");
-
-        // Add more fake employees as needed
+        addEmployee("Peter", "Parker", "6183243454", "987 Fair St", "pparker@yahoo.com", "EMP003");
+        addEmployee("Miles", "Wood", "8897865456", "434 Lane Rd", "mwood@fake.com", "EMP004");
+        addEmployee("Elijah", "Morales", "9096543212", "765 Bronx Ln", "emorales@gmail.com", "EMP005");
 
         // Print confirmation message
         System.out.println("Fake employees created successfully.");
     }
-    //used in project GUI to select employees for a project
-    public String[] currentEmployees() {
-        Object[] array = arrays.get(3);
-        int count = 0;
-        String name;
-        for (Object item : array) {
-            if (item != null) {
-                count++;
-            }
-        }
-        String[] currentEmployees = new String[count];
-        count = 0;
-        for (Object item : array) {
-            Employee employee = (Employee)item;
-            if (employee != null) {
-                name = (employee.getFirstName()) + " " +(employee.getLastName());
-                currentEmployees[count] = name;
-                count++;
-            }
-        }
-        return currentEmployees;
-    }
-    //Job
-    public void addJob(String jobID, String currentTitle, String currentCompany, String currentSupervisor, String pastTitle, String pastCompany, String pastSupervisor, String yearsExperience) {
+
+    // ********Job********
+    // method to add a new job
+    public void addJob(String jobID, String currentTitle, String currentCompany, String currentSupervisor,
+            String pastTitle, String pastCompany, String pastSupervisor, String yearsExperience) {
         int index = 0;
-    while (index < Jobs.length && Jobs[index] != null) {
-        index++;
-    }
-    //Checks if there is space in the array
-    if (index < Employees.length) {
-        Jobs[index] = new Job(jobID, currentTitle, currentCompany, currentSupervisor, pastTitle, pastCompany, pastSupervisor, yearsExperience);
-        
-    } else {
-        System.out.println("Array is full, cannot add more objects.");
-    }
-}
-
-public void editJobInfo(int index, String jobID, String currentTitle, String currentCompany, String currentSupervisor, String pastTitle, String pastCompany, String pastSupervisor, String yearsExperience) {
-    if (index >= 0 && index < Jobs.length) {
-        // Check if the job at the specified index exists
-        if (Jobs[index] != null) {
-            // Update job information
-            Job job = (Job) Jobs[index];
-            job.setJobID(jobID);
-            job.setCurrentTitle(currentTitle);
-            job.setCurrentCompany(currentCompany);
-            job.setCurrentSupervisor(currentSupervisor);
-            job.setPastTitle(pastTitle);
-            job.setPastCompany(pastCompany);
-            job.setPastSupervisor(pastSupervisor);
-            job.setYearsExperience(yearsExperience);
-            Jobs[index] = job; // Reassign the updated job to the array
-            System.out.println("Job information updated successfully.");
-        } else {
-            System.out.println("No job found at index " + index);
+        while (index < Jobs.length && Jobs[index] != null) {
+            index++;
         }
-    } else {
-        System.out.println("Invalid index specified.");
-    }
-}
+        // Checks if there is space in the array
+        if (index < Employees.length) {
+            Jobs[index] = new Job(jobID, currentTitle, currentCompany, currentSupervisor, pastTitle, pastCompany,
+                    pastSupervisor, yearsExperience);
 
+        } else {
+            System.out.println("Array is full, cannot add more objects.");
+        }
+    }
+
+    // method to edit job info
+    public void editJobInfo(int index, String jobID, String currentTitle, String currentCompany,
+            String currentSupervisor, String pastTitle, String pastCompany, String pastSupervisor,
+            String yearsExperience) {
+        if (index >= 0 && index < Jobs.length) {
+            // Check if the job at the specified index exists
+            if (Jobs[index] != null) {
+                // Update job information
+                Job job = (Job) Jobs[index];
+                job.setJobID(jobID);
+                job.setCurrentTitle(currentTitle);
+                job.setCurrentCompany(currentCompany);
+                job.setCurrentSupervisor(currentSupervisor);
+                job.setPastTitle(pastTitle);
+                job.setPastCompany(pastCompany);
+                job.setPastSupervisor(pastSupervisor);
+                job.setYearsExperience(yearsExperience);
+                Jobs[index] = job; // Reassign the updated job to the array
+                System.out.println("Job information updated successfully.");
+            } else {
+                System.out.println("No job found at index " + index);
+            }
+        } else {
+            System.out.println("Invalid index specified.");
+        }
+    }
 
     public void deleteJob(int index) {
-        // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
-    if (index < 0 || index >= Jobs.length) {
-        throw new IndexOutOfBoundsException("Index out of bounds");
+        // checks the index to make sure it isnt out of bounds and throws an exceptionn
+        // if it is
+        if (index < 0 || index >= Jobs.length) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+
+        // Shift elements to the left starting from the index to remove
+        for (int i = index; i < Jobs.length - 1; i++) {
+            Jobs[i] = Jobs[i + 1];
+        }
+
+        // Set the last element to null to remove it
+        Jobs[Jobs.length - 1] = null;
     }
 
-    // Shift elements to the left starting from the index to remove
-    for (int i = index; i < Jobs.length - 1; i++) {
-        Jobs[i] = Jobs[i + 1];
+    // method to create fake Job info that is associated with the employee of the
+    // same ID
+    public void createJobInfo() {
+        addJob("EMP001", "Salesman", "Conglomerate", "H. Turner", "Cashier", "McDonald's", "U. Turner", "5 years");
+        addJob("EMP002", "Senior Salesman", "Conglomerate", "P. Jordan", "Sales Associate", "Walmart", "I. Horn",
+                "15 years");
+        addJob("EMP003", "Salesman", "Conglomerate", "R. Hoffman", "Fulfillment Expert", "Target", "J. Davis",
+                "3 years");
+        addJob("EMP004", "Secretary", "Conglomerate", "L. Smith", "Secretary", "Mediacom", "R. Taylor", "7 years");
+        addJob("EMP005", "Senior Salesman", "Conglomerate", "T. Travis", "Salesman", "RadioShack", "B. Aaron",
+                "20 years");
     }
 
-    // Set the last element to null to remove it
-    Jobs[Jobs.length - 1] = null;
-    }
-  
-    //Skill
+    // ********Skill*********
+    // method to add skills to array
     public void addSkill(String skillID, String hardSkill, String softSkill) {
-    int index = 0;
-    while (index < Skills.length && Skills[index] != null) {
-    index++;
-    }
-    if (index < Employees.length) {
-    Skills[index] = new Skill(skillID, hardSkill, softSkill);
+        int index = 0;
+        while (index < Skills.length && Skills[index] != null) {
+            index++;
+        }
+        if (index < Employees.length) {
+            Skills[index] = new Skill(skillID, hardSkill, softSkill);
 
-    } else {
-    System.out.println("Array is full, cannot add more objects.");
-    }
+        } else {
+            System.out.println("Array is full, cannot add more objects.");
+        }
     }
 
+    // method to edit skill info
     public void editSkillInfo(int index, String skillID, String hardSkill, String softSkill) {
         if (index >= 0 && index < Skills.length) {
             // Check if the skill at the specified index exists
@@ -570,22 +574,34 @@ public void editJobInfo(int index, String jobID, String currentTitle, String cur
             System.out.println("Invalid index specified.");
         }
     }
-    
 
+    // method to delete skill info
     public void deleteSkill(int index) {
-    // checks the index to make sure it isnt out of bounds and throws an exceptionn if it is
-    if (index < 0 || index >= Skills.length) {
-    throw new IndexOutOfBoundsException("Index out of bounds");
+        // checks the index to make sure it isnt out of bounds and throws an exceptionn
+        // if it is
+        if (index < 0 || index >= Skills.length) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+
+        // Shift elements to the left starting from the index to remove
+        for (int i = index; i < Skills.length - 1; i++) {
+            Skills[i] = Skills[i + 1];
+        }
+
+        // Set the last element to null to remove it
+        Skills[Skills.length - 1] = null;
     }
 
-    // Shift elements to the left starting from the index to remove
-    for (int i = index; i < Skills.length - 1; i++) {
-    Skills[i] = Skills[i + 1];
+    // method to create fake skill info that is associated with the employee of the
+    // same ID
+    public void createSkillInfo() {
+        addSkill("EMP001", "Data Analytics, Digital Marketing", "Time Management, Creative");
+        addSkill("EMP002", "Foreign Language, Digital Marketing", "Communication, Teamwork");
+        addSkill("EMP003", "Project Management, Graphic Design", "Leadership, Adaptability");
+        addSkill("EMP004", "Economics, Photo Editing", "Organization, Integrity");
+        addSkill("EMP005", "Video Editing, Marketing", "Teamwork, Hard-Working");
     }
 
-    // Set the last element to null to remove it
-    Skills[Skills.length - 1] = null;
-    }
 
     // Method to add a new array
     public void addArray(Object[] newArray) {

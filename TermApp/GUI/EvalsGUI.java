@@ -1,8 +1,12 @@
-package TermApp;
+package TermApp.GUI;
 
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.*;
+
+import TermApp.Evaluation;
+import TermApp.TEMPARRAYS;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
